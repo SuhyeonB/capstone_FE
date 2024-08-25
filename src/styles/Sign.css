@@ -1,0 +1,172 @@
+.signin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('../assets/images/wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat
+}
+
+.signin-box {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.signin-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.04);
+}
+
+.signin-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signin-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.kakao-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffeb00;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.naver-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #03c75a;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .signin-box {
+    padding: 1.5rem;
+  }
+}
+
+/* signup */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150vh;
+  background-image: url('../assets/images/wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat
+}
+
+.signup-box {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 2px;
+  width: 50vw;
+}
+
+.signup-box h2 {
+  text-align: center;
+}
+
+form {
+  width: 45%;
+  margin: auto;
+}
+
+.input-text {
+  display: block;
+  width: 95%;
+  height: 2em;
+  padding: 10px;
+  margin: auto;
+  border: none;
+  box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.04);
+}
+
+input::placeholder {
+  opacity: 0.3;
+  font-family: 'NotoSansCJKKR';
+  font-size: medium;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.1;
+  letter-spacing: -0.8px;
+  text-align: left;
+  color: #202020;
+}
+
+span {
+  display: inline-block;
+  margin: 0.5em auto 0 0.5em;
+  font-family: 'NotoSansCJKKR';
+  font-size: medium;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.1;
+  letter-spacing: -0.8px;
+  text-align: left;
+  color: #202020;
+}
+
+span.not-allowed {
+  margin-left: 10px;
+  font-family: 'NotoSansCJKKR';
+  font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.8;
+  letter-spacing: -0.6px;
+  text-align: left;
+  color: #d90000;
+}
+
+.submit {
+  width: 100%;
+  background-color: #202020;
+  margin: 3em auto;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0);
+  font-family: NotoSansCJKKR;
+  font-size: 20px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 3.15;
+  letter-spacing: -0.8px;
+  text-align: center;
+  color: #fff;
+}
