@@ -211,19 +211,17 @@ header {
   }
 }
 
-/* 달력 */
-/* 기본 크기 줄이기 */
-/* 컨테이너 크기 20% 줄임 */
+/* Calendar.js */
 h2 {
   font-size: larger;
   margin-left: 10%;
 }
 
 .calendar-container {
-  width: 500px;  /* 기존 600px -> 480px (80%) */
-  height: 400px; /* 기존 500px -> 400px (80%) */
+  width: 600px;  
+  height: 400px; 
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 12px; /* 기존 15px -> 12px (80%) */
+  padding: 12px; 
   text-align: left;
   position: relative;
   transition: all 0.3s ease; /* 부드러운 전환 효과 */
@@ -233,7 +231,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px; /* 기존 15px -> 12px (80%) */
+  margin-bottom: 12px; 
 }
 
 .calendar-box {
@@ -244,10 +242,10 @@ h2 {
 }
 
 .calendar-box .dot {
-  width: 6.4px;  /* 기존 8px -> 6.4px (80%) */
-  height: 6.4px; /* 기존 8px -> 6.4px (80%) */
+  width: 6.4px;  
+  height: 6.4px;
   border-radius: 50%;
-  margin-right: 4px; /* 기존 5px -> 4px (80%) */
+  margin-right: 4px; 
 }
 
 .calendar-box .dot.attendance {
@@ -268,13 +266,13 @@ h2 {
 }
 
 .month i {
-  font-size: 16px; /* 기존 20px -> 16px (80%) */
+  font-size: 16px; 
   cursor: pointer;
-  margin: 0 6.4px; /* 기존 8px -> 6.4px (80%) */
+  margin: 0 6.4px; 
 }
 
 .month div {
-  font-size: 16px; /* 기존 20px -> 16px (80%) */
+  font-size: 16px; 
   font-weight: bold;
 }
 
