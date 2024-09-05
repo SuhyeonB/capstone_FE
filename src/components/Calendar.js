@@ -1,70 +1,107 @@
 import React, { useState } from 'react';
-import moment from 'moment';
-import 'moment/locale/ko'; // 한국어 설정
 
 const Calendar = () => {
-  const [currentMonth, setCurrentMonth] = useState(moment()); // 현재 월
-  const [attendanceDays, setAttendanceDays] = useState([]); // 출석한 날짜들
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [attendanceDays, setAttendanceDays] = useState([]);
 
-  // 이전 달로 이동
-  const handlePrevMonth = () => {
-    setCurrentMonth(currentMonth.clone().subtract(1, 'month'));
-  };
+  const renderCalendar = () => {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
 
-  // 다음 달로 이동
-  const handleNextMonth = () => {
-    setCurrentMonth(currentMonth.clone().add(1, 'month'));
-  };
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
 
-  // 출석 버튼 클릭 시 해당 날짜를 출석으로 기록
-  const handleAttendance = (day) => {
-    if (!attendanceDays.includes(day)) {
-      setAttendanceDays([...attendanceDays, day]);
-    }
-  };
+    const prevLastDate = new Date(year, month, 0).getDate();
+    const nextDays = 35 - (firstDay + lastDate); // 전체 5주
 
-  // 현재 월의 모든 날짜 생성
-  const renderDaysInMonth = () => {
-    const startOfMonth = currentMonth.clone().startOf('month').startOf('week');
-    const endOfMonth = currentMonth.clone().endOf('month').endOf('week');
+    let days = [];
 
-    const day = startOfMonth.clone().subtract(1, 'day');
-    const days = [];
-
-    while (day.isBefore(endOfMonth, 'day')) {
-      day.add(1, 'day');
-      const formattedDay = day.format('YYYY-MM-DD');
-      const isAttendanceDay = attendanceDays.includes(formattedDay);
+    // 이전 달의 날짜
+    for (let x = firstDay; x > 0; x--) {
       days.push(
-        <div 
-          key={formattedDay} 
-          className={`day ${isAttendanceDay ? 'attended' : ''}`}
-          onClick={() => handleAttendance(formattedDay)} // 클릭 시 출석 처리
-        >
-          {day.format('D')}
+        <div className="prev-date" key={`prev-${x}`}>
+          {prevLastDate - x + 1}
         </div>
       );
     }
+
+    // 현재 달의 날짜
+    for (let i = 1; i <= lastDate; i++) {
+      const isToday = i === new Date().getDate() && month === new Date().getMonth() && year === new Date().getFullYear();
+      
+      // 해당 달과 해당 날짜에만 출석 체크를 표시
+      const isAttendance = attendanceDays.some(
+        (day) => day.year === year && day.month === month && day.date === i
+      );
+
+      days.push(
+        <div className={`day ${isToday ? 'today' : ''}`} key={`day-${i}`}>
+          {isAttendance && <div className="attendance-dot"></div>}
+          {i}
+        </div>
+      );
+    }
+
+    // 다음 달의 날짜
+    for (let j = 1; j <= nextDays; j++) {
+      days.push(<div className="next-date" key={`next-${j}`}>{j}</div>);
+    }
+
     return days;
+  };
+
+  const prevMonth = () => {
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
+  };
+
+  const nextMonth = () => {
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
+  };
+
+  const handleAttendance = () => {
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const currentMonth = today.getMonth();
+    const currentDate = today.getDate();
+
+    const attendanceExists = attendanceDays.some(
+      (day) => day.year === currentYear && day.month === currentMonth && day.date === currentDate
+    );
+
+    if (!attendanceExists) {
+      setAttendanceDays([...attendanceDays, { year: currentYear, month: currentMonth, date: currentDate }]);
+    }
   };
 
   return (
     <div className="calendar-container">
+      <h2><strong>캘린더</strong></h2>
       <div className="calendar-header">
-        <button onClick={handlePrevMonth}>◀</button>
-        <span>{currentMonth.format('YYYY년 MM월')}</span>
-        <button onClick={handleNextMonth}>▶</button>
+        <div className="month">
+          <i className="prev" onClick={prevMonth}>&lt;</i>
+          <div>
+            {currentDate.getFullYear()}년 {currentDate.getMonth() + 1}월
+          </div>
+          <i className="next" onClick={nextMonth}>&gt;</i>
+        </div>
+        <div className="calendar-box">
+          <div><span className="dot diary"></span>일기 작성됨</div>
+          <div><span className="dot attendance"></span>출석함</div>
+        </div>
       </div>
-      <div className="calendar-grid">
-        <div className="day-name">일</div>
-        <div className="day-name">월</div>
-        <div className="day-name">화</div>
-        <div className="day-name">수</div>
-        <div className="day-name">목</div>
-        <div className="day-name">금</div>
-        <div className="day-name">토</div>
-        {renderDaysInMonth()}
+      <div className="calendar">
+        <div className="weekdays">
+          <div className="sun">일</div>
+          <div className="mon">월</div>
+          <div className="tue">화</div>
+          <div className="wed">수</div>
+          <div className="thu">목</div>
+          <div className="fir">금</div>
+          <div className="sat">토</div>
+        </div>
+        <div className="days">{renderCalendar()}</div>
       </div>
+      <button className="attendance-btn" onClick={handleAttendance}>출석 체크</button>
     </div>
   );
 };

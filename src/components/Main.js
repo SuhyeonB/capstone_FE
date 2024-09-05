@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import '../styles/component_css/Main.css';
-import Calendar from "./components/Calendar.js";
+import Calendar from "./Calendar";
 
 const Main = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(true); // 로그인 상태 관리
+    const username = "홍길동";
 
     return (
         <div className="wallpaper">
@@ -11,7 +12,9 @@ const Main = () => {
                 // 로그인 된 상태의 화면
                 <div className="logged-in-view">
                     <div className="header">
-                        <h1>홍길동님, 오늘 하루는 어땠나요?</h1>
+                        <div className="text fade-in-up">
+                            <strong>{username}</strong>님, 오늘 하루는 어땠나요?
+                        </div>
                         <div className="weather-info">
 
                         </div>
