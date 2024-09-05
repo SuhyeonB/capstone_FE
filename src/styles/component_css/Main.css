@@ -114,13 +114,14 @@ header {
 /* signin css*/
 .signin-container {
   display: flex;
-  justify-content: center;
+  justify-content: center; 
   align-items: center;
+  width: 100%;
   height: 100vh;
-  background-image: url('../../assets/images/wallpaper.jpg');
+  background-image: url('../../assets/images/wallpaperflare.com_wallpaper.jpg');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat
+  background-repeat: no-repeat;
 }
 
 .signin-box {
@@ -209,3 +210,184 @@ header {
     padding: 1.5rem;
   }
 }
+
+/* Calendar.js */
+h2 {
+  font-size: larger;
+  margin-left: 10%;
+}
+
+.calendar-container {
+  width: 600px;  
+  height: 400px; 
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 12px; 
+  text-align: left;
+  position: relative;
+  transition: all 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px; 
+}
+
+.calendar-box {
+  display: flex;
+  align-items: center;
+  font-size: small;
+  margin-bottom: 5%;
+}
+
+.calendar-box .dot {
+  width: 6.4px;  
+  height: 6.4px;
+  border-radius: 50%;
+  margin-right: 4px; 
+}
+
+.calendar-box .dot.attendance {
+  background-color: blue;
+}
+
+.calendar-box .dot.diary {
+  background-color: orange;
+}
+
+.month {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5%;
+  align-items: center;
+  font-size: medium;
+  position: relative;
+}
+
+.month i {
+  font-size: 16px; 
+  cursor: pointer;
+  margin: 0 6.4px; 
+}
+
+.month div {
+  font-size: 16px; 
+  font-weight: bold;
+}
+
+/* 요일 및 날짜 스타일 */
+.weekdays, .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.weekdays div {
+  padding: 6.4px 0; /* 기존 8px -> 6.4px (80%) */
+  font-weight: bold;
+  background-color: transparent;
+}
+
+.days .day {
+  position: relative;
+  padding: 6.4px 0; /* 기존 8px -> 6.4px (80%) */
+  cursor: pointer;
+  color: black;
+}
+
+.prev-date, .next-date {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.today {
+  background-color: rgba(0, 123, 255, 0.2);
+  border-radius: 50%;
+  color: #007BFF;
+}
+
+.attendance-dot {
+  width: 4px; /* 기존 5px -> 4px (80%) */
+  height: 4px; /* 기존 5px -> 4px (80%) */
+  background-color: blue;
+  border-radius: 50%;
+  position: absolute;
+  top: 2.4px; /* 기존 3px -> 2.4px (80%) */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.journal-dot {
+  width: 4px; /* 기존 5px -> 4px (80%) */
+  height: 4px; /* 기존 5px -> 4px (80%) */
+  background-color: orange;
+  border-radius: 50%;
+  position: absolute;
+  top: 2.4px; /* 기존 3px -> 2.4px (80%) */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.attendance-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  bottom: 16px; /* 기존 20px -> 16px (80%) */
+  right: 16px; /* 기존 20px -> 16px (80%) */
+}
+
+.attendance-btn {
+  padding: 6.4px 12.8px; /* 기존 8px 16px -> 6.4px 12.8px (80%) */
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px; /* 기존 5px -> 4px (80%) */
+  margin-right: 8px;
+  float: right;
+  margin-top: 8px; /* 기존 10px -> 8px (80%) */
+}
+
+.attendance-btn:hover {
+  background-color: #333;
+}
+
+.today-date {
+  font-size: 9.6px; /* 기존 12px -> 9.6px (80%) */
+  color: black;
+}
+
+.sun {
+  color: red;
+}
+
+.sat {
+  color: blue;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .calendar-container {
+    width: 100%; /* 화면이 작아지면 너비를 100%로 확장 */
+    height: auto; /* 높이를 자동으로 설정 */
+    padding: 8px; /* 기존 10px -> 8px (80%) */
+  }
+
+  .month div, .month i {
+    font-size: 14.4px; /* 기존 18px -> 14.4px (80%) */
+  }
+
+  .weekdays div, .days .day {
+    padding: 4.8px 0; /* 기존 6px -> 4.8px (80%) */
+  }
+
+  .attendance-btn {
+    padding: 4.8px 9.6px; /* 기존 6px 12px -> 4.8px 9.6px (80%) */
+  }
+
+  .calendar-box {
+    font-size: 8px; /* 기존 10px -> 8px (80%) */
+  }
+}
+

@@ -37,9 +37,8 @@ function Signin() {
   return (
     <div className="signin-container">
       <div className="signin-box">
-        <div className="signin-background"></div> {/* 투명 배경 설정을 위한 className 지정. */}
-        <div className="signin-content">
-          <h2>로그인</h2>
+        <h2>로그인</h2>
+        <form className="signin-form">
           <input 
             type="text" 
             placeholder="아이디" 
@@ -70,9 +69,9 @@ function Signin() {
           </div>
           <button className="kakao-button">카카오 로그인</button>
           <button className="naver-button">네이버 로그인</button>
+          </form>
         </div>
       </div>
-    </div>
   );
 }
 
