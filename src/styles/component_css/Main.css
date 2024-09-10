@@ -212,13 +212,13 @@ header {
 }
 
 /* Calendar.js */
-h2 {
+h1 {
   font-size: larger;
-  margin-left: 10%;
+  margin-left: 5%;
 }
 
 .calendar-container {
-  width: 600px;  
+  width: 500px;  
   height: 400px; 
   background-color: rgba(255, 255, 255, 0.9);
   padding: 12px; 
@@ -284,14 +284,14 @@ h2 {
 }
 
 .weekdays div {
-  padding: 6.4px 0; /* 기존 8px -> 6.4px (80%) */
+  padding: 6.4px 0; 
   font-weight: bold;
   background-color: transparent;
 }
 
 .days .day {
   position: relative;
-  padding: 6.4px 0; /* 기존 8px -> 6.4px (80%) */
+  padding: 6.4px 0; 
   cursor: pointer;
   color: black;
 }
@@ -307,23 +307,23 @@ h2 {
 }
 
 .attendance-dot {
-  width: 4px; /* 기존 5px -> 4px (80%) */
-  height: 4px; /* 기존 5px -> 4px (80%) */
+  width: 4px; 
+  height: 4px; 
   background-color: blue;
   border-radius: 50%;
   position: absolute;
-  top: 2.4px; /* 기존 3px -> 2.4px (80%) */
+  top: 2.4px; 
   left: 50%;
   transform: translateX(-50%);
 }
 
 .journal-dot {
-  width: 4px; /* 기존 5px -> 4px (80%) */
-  height: 4px; /* 기존 5px -> 4px (80%) */
+  width: 4px; 
+  height: 4px; 
   background-color: orange;
   border-radius: 50%;
   position: absolute;
-  top: 2.4px; /* 기존 3px -> 2.4px (80%) */
+  top: 2.4px; 
   left: 50%;
   transform: translateX(-50%);
 }
@@ -333,20 +333,20 @@ h2 {
   justify-content: flex-end;
   align-items: center;
   position: absolute;
-  bottom: 16px; /* 기존 20px -> 16px (80%) */
-  right: 16px; /* 기존 20px -> 16px (80%) */
+  bottom: 16px;
+  right: 16px; 
 }
 
 .attendance-btn {
-  padding: 6.4px 12.8px; /* 기존 8px 16px -> 6.4px 12.8px (80%) */
+  padding: 6.4px 12.8px; 
   background-color: black;
   color: white;
   border: none;
   cursor: pointer;
-  border-radius: 4px; /* 기존 5px -> 4px (80%) */
+  border-radius: 4px;
   margin-right: 8px;
   float: right;
-  margin-top: 8px; /* 기존 10px -> 8px (80%) */
+  margin-top: 8px; 
 }
 
 .attendance-btn:hover {
@@ -354,7 +354,7 @@ h2 {
 }
 
 .today-date {
-  font-size: 9.6px; /* 기존 12px -> 9.6px (80%) */
+  font-size: 9.6px; 
   color: black;
 }
 
@@ -366,28 +366,163 @@ h2 {
   color: blue;
 }
 
-/* 반응형 디자인 */
 @media (max-width: 768px) {
   .calendar-container {
-    width: 100%; /* 화면이 작아지면 너비를 100%로 확장 */
-    height: auto; /* 높이를 자동으로 설정 */
-    padding: 8px; /* 기존 10px -> 8px (80%) */
+    width: 100%; 
+    height: auto;
+    padding: 8px; 
   }
 
   .month div, .month i {
-    font-size: 14.4px; /* 기존 18px -> 14.4px (80%) */
+    font-size: 14.4px;
   }
 
   .weekdays div, .days .day {
-    padding: 4.8px 0; /* 기존 6px -> 4.8px (80%) */
+    padding: 4.8px 0; 
   }
 
   .attendance-btn {
-    padding: 4.8px 9.6px; /* 기존 6px 12px -> 4.8px 9.6px (80%) */
+    padding: 4.8px 9.6px; 
   }
 
   .calendar-box {
-    font-size: 8px; /* 기존 10px -> 8px (80%) */
+    font-size: 8px; 
   }
 }
 
+
+/*행복지수*/
+.happiness-card {
+  width: 350px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 0 auto;
+}
+
+.happiness-card h1 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.chart-container {
+  width: 100%;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+.average-section {
+  display: flex;
+  font-size: medium;
+  justify-content: space-between;
+  gap: 20px; 
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.average-score {
+  font-weight: bold;
+  color: #333;
+  margin: 5px 0;
+}
+
+.description {
+  font-size: 12px;
+  color: #555;
+}
+
+.register-button {
+  background-color: #000; /* 검정색 버튼 */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.register-button:hover {
+  background-color: #333;
+}
+
+/* 모달 스타일 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal-content h3 {
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 5px;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.submit-button {
+  background-color: #4A90E2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.submit-button:hover {
+  background-color: #357ABD;
+}
+
+.close-button {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background-color: #333;
+}
+
+/* Calendar & Happiness를 가로로 배치 */
+.content {
+  display: flex;
+  justify-content: space-between; /* 캘린더와 행복지수가 양옆에 배치되도록 설정 */
+  gap: 20px; /* 두 컴포넌트 사이에 간격 추가 */
+  align-items: stretch; /* 높이를 동일하게 맞추기 위해 stretch 사용 */
+  padding: 20px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column; /* 작은 화면에서는 세로로 배치 */
+    align-items: center;
+  }
+
+  .calendar, .happiness-index {
+    width: 100%; /* 작은 화면에서는 전체 너비로 설정 */
+    margin: 10px 0;
+  }
+}
