@@ -80,21 +80,21 @@ const Happiness = () => {
     elements: {
       bar: {
         borderRadius: 2, // 막대 끝 둥글게 설정
-        barPercentage: 0.7, // 막대 너비 설정 (간격 조절)
+        barPercentage: 0.5, // 막대 너비 설정 (간격 조절)
       },
     },
   };
 
   return (
     <div className="happiness-card">
-      <h1>{currentMonth} 행복지수</h1>
+      <h1><strong>{currentMonth} 행복지수</strong></h1>
       <div className="chart-container">
         <Bar data={chartData} options={chartOptions} />
       </div>
 
-      <div className="average-section">
-        <span><strong>평균</strong></span>
-        <span className="average-score">{calculateAverage()} 점</span>
+      <div className="average">
+        <span className="average-text"><strong>평균</strong></span>
+        <span className="average-score"><strong>{calculateAverage()} 점</strong></span>
       </div>
 
       <button className="register-button" onClick={() => setIsModalOpen(true)}>행복지수 등록</button>
@@ -102,11 +102,9 @@ const Happiness = () => {
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">
-            <h3>행복지수 등록</h3>
+            <h3>행복지수 등록(0~10)</h3>
             <form onSubmit={handleSubmit}>
               <p>오늘은 {currentDay}일입니다.</p>
-
-              <label htmlFor="happiness-input">행복지수 (0 ~ 10): </label>
               <input
                 type="number"
                 id="happiness-input"
@@ -116,10 +114,9 @@ const Happiness = () => {
                 value={inputValue}
                 onChange={handleInputChange}
               />
-
               <button type="submit" className="submit-button">등록</button>
+              <button onClick={() => setIsModalOpen(false)} className="close-button">닫기</button>
             </form>
-            <button onClick={() => setIsModalOpen(false)} className="close-button">닫기</button>
           </div>
         </div>
       )}

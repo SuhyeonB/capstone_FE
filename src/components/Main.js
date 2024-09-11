@@ -14,7 +14,7 @@ const Main = () => {
                 <div className="logged-in-view">
                     <div className="header">
                         <div className="text fade-in-up">
-                            <strong>{username}</strong>님, 오늘 하루는 어땠나요?
+                            <strong>{username}</strong>님, <br />오늘 하루는 어땠나요?
                         </div>
                         <div className="weather-info">
 
