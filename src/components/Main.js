@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/component_css/Main.css';
-import Calendar from "./Calendar";
+import Calendar from '../pages/main/Calendar';
+import Happiness from '../pages/main/Happiness';
 
 const Main = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(true); // 로그인 상태 관리
@@ -13,7 +14,7 @@ const Main = () => {
                 <div className="logged-in-view">
                     <div className="header">
                         <div className="text fade-in-up">
-                            <strong>{username}</strong>님, 오늘 하루는 어땠나요?
+                            <strong>{username}</strong>님, <br />오늘 하루는 어땠나요?
                         </div>
                         <div className="weather-info">
 
@@ -24,7 +25,7 @@ const Main = () => {
                             <Calendar/>
                         </div>
                         <div className="happiness-index">
-
+                            <Happiness/>
                         </div>
                     </div>
                 </div>

@@ -3,17 +3,17 @@ import React, { useState } from 'react';
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [attendanceDays, setAttendanceDays] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const renderCalendar = () => {
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
 
-    const firstDay = new Date(year, month, 1).getDay();
-    const lastDate = new Date(year, month + 1, 0).getDate();
+    const firstDay = new Date(year, month, 1).getDay(); // 해당 달의 첫 번째 날의 요일
+    const lastDate = new Date(year, month + 1, 0).getDate(); // 해당 달의 마지막 날짜
 
-    const prevLastDate = new Date(year, month, 0).getDate();
-    const nextDays = 35 - (firstDay + lastDate); // 전체 5주
-
+    const prevLastDate = new Date(year, month, 0).getDate(); // 이전 달의 마지막 날짜
+    const totalDays = 35; // 5주 = 35일
     let days = [];
 
     // 이전 달의 날짜
@@ -35,16 +35,25 @@ const Calendar = () => {
       );
 
       days.push(
-        <div className={`day ${isToday ? 'today' : ''}`} key={`day-${i}`}>
+        <div 
+          className={`day ${isToday ? 'today' : ''}`} 
+          key={`day-${i}`} 
+          onClick={() => setSelectedDate(new Date(year, month, i))} // 날짜 클릭 시 선택된 날짜 업데이트
+        >
           {isAttendance && <div className="attendance-dot"></div>}
           {i}
         </div>
       );
     }
 
-    // 다음 달의 날짜
-    for (let j = 1; j <= nextDays; j++) {
-      days.push(<div className="next-date" key={`next-${j}`}>{j}</div>);
+    // 다음 달의 날짜 (5주 = 총 35일로 맞추기 위해 나머지 공간에 추가)
+    const totalRenderedDays = days.length;
+    for (let j = 1; totalRenderedDays + j <= totalDays; j++) {
+      days.push(
+        <div className="next-date" key={`next-${j}`}>
+          {j}
+        </div>
+      );
     }
 
     return days;
@@ -59,10 +68,9 @@ const Calendar = () => {
   };
 
   const handleAttendance = () => {
-    const today = new Date();
-    const currentYear = today.getFullYear();
-    const currentMonth = today.getMonth();
-    const currentDate = today.getDate();
+    const currentYear = selectedDate.getFullYear();
+    const currentMonth = selectedDate.getMonth();
+    const currentDate = selectedDate.getDate();
 
     const attendanceExists = attendanceDays.some(
       (day) => day.year === currentYear && day.month === currentMonth && day.date === currentDate
@@ -76,7 +84,7 @@ const Calendar = () => {
   return (
     <div className="container">
       <div className="calendar-container">
-        <h1>캘린더</h1>
+        <h1><strong>캘린더</strong></h1>
         <div className="calendar-header">
           <div className="month">
             <i className="prev" onClick={prevMonth}>&lt;</i>
@@ -97,12 +105,14 @@ const Calendar = () => {
             <div className="tue">화</div>
             <div className="wed">수</div>
             <div className="thu">목</div>
-            <div className="fir">금</div>
+            <div className="fri">금</div>
             <div className="sat">토</div>
           </div>
           <div className="days">{renderCalendar()}</div>
         </div>
-        <button className="attendance-btn" onClick={handleAttendance}>출석 체크</button>
+        <button className="attendance-btn" onClick={handleAttendance}>
+          {`${selectedDate.getMonth() + 1}/${selectedDate.getDate()}일 출첵!`}
+        </button>
       </div>
     </div>
   );
