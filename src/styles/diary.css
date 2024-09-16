@@ -1,0 +1,78 @@
+.diary-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.img-upload {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.img-upload img {
+    width: 30%;
+}
+
+.image-upload input[type="file"] {
+    display: none;
+}
+
+.diary-element {
+    width: 90%;
+    margin: auto;
+}
+
+.options {
+    position: absolute;
+    bottom: 1.3em;
+    margin-left: 1.3em;
+}
+
+.diary-title input, input::placeholder{
+    font-family: NotoSansCJKKR;
+    width: 100%;
+    color: #202020;
+    border: none;
+    font-size:x-large;
+    font-weight: 800;
+    margin: auto;
+}
+
+.diary-content textarea {
+    height: 150px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.diary-options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    margin-bottom: 1.3em;
+}
+
+.weather {
+    display: flex;
+    align-items: flex-start;
+}
+
+.submit-btn {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}

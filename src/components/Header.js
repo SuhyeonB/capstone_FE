@@ -9,7 +9,7 @@ const Header = () => {
         <Link to="/" className="brand">My Daily Diary</Link>
         <ul className="nav-links">
           <li><Link to="/diary">내일기</Link></li>
-          <li><Link to="/calendar">일기작성</Link></li>
+          <li><Link to="/writediary">일기작성</Link></li>
           <li><Link to="/board">게시판</Link></li>
         </ul>
       </div>
