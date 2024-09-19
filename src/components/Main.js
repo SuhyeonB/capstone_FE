@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles/component_css/Main.css';
 import Calendar from '../pages/main/Calendar';
 import Happiness from '../pages/main/Happiness';
+import Weather from '../pages/main/Weather';
 
 const Main = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(true); // 로그인 상태 관리
@@ -17,7 +18,7 @@ const Main = () => {
                             <strong>{username}</strong>님, <br />오늘 하루는 어땠나요?
                         </div>
                         <div className="weather-info">
-
+                            <Weather/>
                         </div>
                     </div>
                     <div className="content">
