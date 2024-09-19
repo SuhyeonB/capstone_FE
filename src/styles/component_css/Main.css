@@ -513,21 +513,20 @@ input {
   background-color: #ffffff;
 }
 
-
-
 /* Calendar & Happiness를 가로로 배치 */
 .content {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 20px; 
   padding: 20px;
+  margin-top: -10vh;
 }
 
-/* 반응형 디자인 */
 @media (max-width: 768px) {
   .content {
     flex-direction: column;
     align-items: center;
+    margin-top: 0; 
   }
 
   .calendar, .happiness-index {
