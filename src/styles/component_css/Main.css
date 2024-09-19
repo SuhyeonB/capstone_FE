@@ -1,4 +1,7 @@
 /* 기본 태그 */
+* {
+  font-family: NotoSansCJKKR;
+}
 html, body {
   margin: 0;
   padding: 0;
@@ -9,12 +12,17 @@ html, body {
 
 span {margin: auto;}
 
-input:hover, input:focus {
+input:hover, input:focus, textarea:hover, textarea:focus {
   outline: none;
 }
 
 input::placeholder {
   font: inherit;
+}
+
+textarea {
+  border: none;
+  font-size: x-large;
 }
 
 .wallpaper {
@@ -57,6 +65,10 @@ input::placeholder {
 .cont-2 {
   width: 49%;
   height: 60vh;
+  position: relative;;
+}
+
+.cont-box {
   background-color: #ffffff;
   box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.04);
   position: relative;
