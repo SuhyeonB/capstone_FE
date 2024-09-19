@@ -1,0 +1,144 @@
+.diary-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.img-upload {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor:pointer;
+}
+
+.img-upload p, img {
+    cursor: pointer;
+}
+
+.img-upload img {
+    width: 30%;
+}
+
+.image-upload input[type="file"] {
+    display: none;
+}
+
+.diary-element {
+    width: 90%;
+    margin: auto;
+}
+
+.options {
+    position: absolute;
+    bottom: 1.3em;
+    margin-left: 1.3em;
+}
+
+.diary-title input, input::placeholder{
+    font-family: NotoSansCJKKR;
+    width: 100%;
+    color: #202020;
+    border: none;
+    font-size:x-large;
+    font-weight: 800;
+    margin: auto;
+}
+
+.diary-content {
+    height: 88%;
+}
+
+.diary-content textarea {
+    resize: none;
+    width: 90%;
+    height: 90%;
+    margin: 1em;
+    font-size: 1.5em;
+}
+
+.diary-options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    margin-bottom: 1.3em;
+}
+
+/* weather */
+.weather {
+    display: flex;
+    align-items: flex-start;
+}
+
+.weather input {
+    display: none;
+}
+
+.weather label{
+    display: inline-block;
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+}
+
+.weather .sunnybtn{
+    margin-left: 0.5em;
+    background: url('../assets/icons/9197.png') no-repeat center center;
+    background-size: cover;
+}
+.weather input[type="radio"]:checked + label.sunnybtn{
+    background: url('../assets/icons/9193.png') no-repeat center center;
+    background-size: cover;
+}
+.weather .pcloudybtn{
+    background: url('../assets/icons/9198.png') no-repeat center center;
+    background-size: cover;
+}
+.weather input[type="radio"]:checked + label.pcloudybtn{
+    background: url('../assets/icons/9190.png') no-repeat center center;
+    background-size: cover;
+}
+.weather .rainybtn{
+    background: url('../assets/icons/9194.png') no-repeat center center;
+    background-size: cover;
+}
+.weather input[type="radio"]:checked + label.rainybtn{
+    background: url('../assets/icons/9188.png') no-repeat center center;
+    background-size: cover;
+}
+.weather .snowybtn{
+    background: url('../assets/icons/9195.png') no-repeat center center;
+    background-size: cover;
+}
+.weather input[type="radio"]:checked + label.snowybtn{
+    background: url('../assets/icons/9191.png') no-repeat center center;
+    background-size: cover;
+}
+.weather .cloudybtn{
+    background: url('../assets/icons/9187.png') no-repeat center center;
+    background-size: cover;
+}
+.weather input[type="radio"]:checked + label.cloudybtn{
+    background: url('../assets/icons/9192.png') no-repeat center center;
+    background-size: cover;
+}
+
+.submit-btn {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
+    background-color: #ffffff;
+    color: #5c5cfe;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    text-align: center;
+}
+
+.submit-btn:hover {
+    background-color: #5c5cfe;
+    color: #ffffff;
+}

@@ -124,9 +124,7 @@ form {
 input::placeholder {
   opacity: 0.3;
   font-family: 'NotoSansCJKKR';
-  font-size: medium;
-  font-weight: normal;
-  font-stretch: normal;
+  font-size: 20px;
   font-style: normal;
   line-height: 2.1;
   letter-spacing: -0.8px;
