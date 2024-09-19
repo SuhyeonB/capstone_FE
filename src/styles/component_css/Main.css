@@ -1,8 +1,28 @@
+/* 기본 태그 */
+* {
+  font-family: NotoSansCJKKR;
+}
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
+  background-color: #f5f5f7;
+}
+
+span {margin: auto;}
+
+input:hover, input:focus, textarea:hover, textarea:focus {
+  outline: none;
+}
+
+input::placeholder {
+  font: inherit;
+}
+
+textarea {
+  border: none;
+  font-size: x-large;
 }
 
 .wallpaper {
@@ -17,11 +37,59 @@ html, body {
   background-repeat: no-repeat;
 }
 
+/* 레이어 */
+
+.background-white {
+  background-color: #f5f5f7;
+}
+
+.font-gray {
+  color: #8e8e8e;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.container {
+  width: 60%;
+  margin: auto;
+  margin-top: 60px;
+}
+
+.flex-cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cont-2 {
+  width: 49%;
+  height: 60vh;
+  position: relative;;
+}
+
+.cont-box {
+  background-color: #ffffff;
+  box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.04);
+  position: relative;
+}
+
+.height-6 {
+  height: 60%;
+  margin: 1.3em;
+  background-color: #f8f8f8;
+}
+
 .text {
   font-size: x-large;
   transform: translateY(-15vh);
   color: white;
 }
+
+.invisible {
+  display: none;
+}
+/**/
 
 .fade-in-up {
   opacity: 0;
