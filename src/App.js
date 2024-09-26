@@ -8,6 +8,8 @@ import Footer from "./components/Footer";
 import Signin from "./pages/signin";
 import Signup from "./pages/signup";
 
+import CreateDiary from "./pages/createDiary/CreateDiary";
+
 import ScrollToTop from "./utils/ScrollTolTop";
 
 function App() {
@@ -20,6 +22,9 @@ function App() {
             <Route path='/' element={<Main/>}/>
             <Route path='/signin' element={<Signin/>}/>
             <Route path='/signup' element={<Signup/>}/>
+
+            {/* nav */}
+            <Route path='/writediary' element={<CreateDiary/>} />
           </Routes>
           <Footer/>
         </BrowserRouter>
