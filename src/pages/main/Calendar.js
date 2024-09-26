@@ -89,7 +89,7 @@ const Calendar = () => {
           <div className="month">
             <i className="prev" onClick={prevMonth}>&lt;</i>
             <div>
-              {currentDate.getFullYear()}년 {currentDate.getMonth() + 1}월
+              <strong>{currentDate.getFullYear()}년 {currentDate.getMonth() + 1}월</strong>
             </div>
             <i className="next" onClick={nextMonth}>&gt;</i>
           </div>
