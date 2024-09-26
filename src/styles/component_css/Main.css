@@ -80,10 +80,19 @@ textarea {
   background-color: #f8f8f8;
 }
 
-.text {
+.text, .intro-text {
   font-size: x-large;
-  transform: translateY(-15vh);
   color: white;
+}
+
+.text {
+  transform: translateY(-15vh);
+}
+
+.intro-text {
+  margin-top: 4.5em;
+  transform: none;
+  margin-bottom: 3vh;
 }
 
 .invisible {
@@ -282,16 +291,14 @@ header {
 /* Calendar, Happiness.css */
 h1 {
   text-align: left;
-  font-size: 23px;
-  margin: 5px 0 18px 0;
-  font-weight: bold;
+  font-size: 1.5em;
+  margin: 0 4em 2em 0;
 }
 
 .calendar-container, .happiness-card {
-  height: 370px;
+  height: 50vh;
   background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 15px 30px 30px 30px;
+  padding: 1.5em;
   text-align: center;
   margin: 0 auto;
   position: relative;
@@ -299,24 +306,25 @@ h1 {
 }
 
 .calendar-container {
-  width: 460px;
+  width: 65vh;
 }
 
 .happiness-card {
-  width: 300px;
+  width: 40vh;
 }
 
 .attendance-btn, .register-button {
+  margin: 2.1em 0 0 0.4em;
+  padding: 0.6em 0.8em 0.7em 0.7em;
   background-color: #000;
   color: #fff;
-  padding: 7px 11px;
   border: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
   position: absolute;
-  bottom: 15px;
-  right: 15px;
-  font-size: 12px;
+  bottom:  1.5em;
+  right:  1.5em;
+  font-size: 0.78em;
 }
 
 .attendance-btn:hover, .register-button:hover {
@@ -333,22 +341,22 @@ h1 {
 .calendar-box {
   display: flex;
   align-items: center;
-  font-size: 14px;
-  margin-bottom: 5%;
+  font-size: 0.9em;
+  margin-bottom: 2.5%;
 }
 
 .calendar-box .dot {
-  width: 6px;
-  height: 6px;
+  width: 0.3vw;
+  height: 0.3vw;
   border-radius: 50%;
-  margin-right: 4px;
+  margin: 0 0.2em 0.15em 0.5em;
 }
 
-.calendar-box .dot.attendance {
+.attendance {
   background-color: blue;
 }
 
-.calendar-box .dot.diary {
+.diary {
   background-color: orange;
 }
 
@@ -357,44 +365,41 @@ h1 {
   justify-content: center;
   margin-bottom: 6%;
   align-items: center;
-  font-size: medium;
   position: relative;
 }
 
 .month i {
-  font-size: 16px;
+  font-size: 1.6vh;
   cursor: pointer;
-  margin: 0 20px;
+  margin: 0 1.5em;
 }
 
 .month div {
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 1em;
 }
 
 .weekdays, .days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
+  font-size: 0.97em;
   gap: 6px;
 }
 
-.weekdays div {
-  padding: 5px 0;
+.weekdays {
   font-weight: bold;
-  font-size: 14px;
 }
 
 .days .day, .prev-date, .next-date {
   position: relative;
-  width: 33px;
-  height: 33px;
+  width: 2.8vw;
+  height: 4.7vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2px auto;
+  margin: auto;
   color: black;
-  font-size: 14px;
+  font-size: 0.97em;
   cursor: pointer;
 }
 
@@ -405,20 +410,16 @@ h1 {
 .today {
   background-color: #fff;
   border-radius: 50%;
-  width: 38px;
-  height: 38px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
   color: #fff;
-  font-size: 14px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.2);
 }
 
 .attendance-dot {
-  width: 4px;
-  height: 4px;
+  width: 0.3vw;
+  height: 0.3vw;
   background-color: blue;
   border-radius: 50%;
   position: absolute;
@@ -575,6 +576,10 @@ form {
   gap: 1.5em; 
 }
 
+.content {
+  margin-top: -10vh;
+}
+
 @media (max-width: 768px) {
   .content {
     flex-direction: column;
@@ -603,6 +608,7 @@ form {
   display: flex;
   align-items: center;
   font-size: 2.5vh;
+  margin-bottom: 3vh;
 }
 
 .city-name {

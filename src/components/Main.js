@@ -18,7 +18,7 @@ const Main = () => {
                 // 로그인 된 상태의 화면
                 <div className="logged-in-view">
                     <div className="content-header">
-                        <div className="text fade-in-up">
+                        <div className="intro-text fade-in-up">
                             <strong>{username}</strong>님, <br />오늘 하루는 어땠나요?
                         </div>
                         <div className="weather-info">

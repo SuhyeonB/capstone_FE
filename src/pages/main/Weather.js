@@ -17,8 +17,8 @@ const Weather = () => {
                 let cityName = response.data.name;
                 if (cityName === "Seoul") {
                     cityName = "서울";
-                } else if (cityName === "Uijeongbu") {
-                    cityName = "의정부";
+                } else if (cityName === "Uijeongbu-si") {
+                    cityName = "의정부시";
                 }
                 setWeatherData({ ...response.data, name: cityName });
                 setLoading(false);
