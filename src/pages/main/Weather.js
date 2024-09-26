@@ -15,11 +15,11 @@ const Weather = () => {
                 const response = await axios.get(apiUrl);
                 // Forced conversion of "Seoul" and "Uijeongbu" to Korean (add other regions if necessary)
                 let cityName = response.data.name;
-                /*if (cityName === "Seoul") {
+                if (cityName === "Seoul") {
                     cityName = "서울";
-                } else if (cityName === "Uijeongbu") {
-                    cityName = "의정부";
-                }*/
+                } else if (cityName === "Uijeongbu-si") {
+                    cityName = "의정부시";
+                }
                 setWeatherData({ ...response.data, name: cityName });
                 setLoading(false);
             } catch (error) {
