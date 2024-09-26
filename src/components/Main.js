@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/component_css/Main.css';
 import Calendar from '../pages/main/Calendar';
 import Happiness from '../pages/main/Happiness';
 
 const Main = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(true); // 로그인 상태 관리
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 관리
     const username = "홍길동";
+
+    useEffect(() => {
+        if (username) setIsLoggedIn(true)
+    }, [setIsLoggedIn])
 
     return (
         <div className="wallpaper">
