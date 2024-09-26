@@ -54,33 +54,33 @@ const Happiness = () => {
     scales: {
       x: {
         grid: {
-          display: false, // X축의 세로선 숨김
+          display: false, 
         },
         ticks: {
-          display: false, // X축 레이블 숨기기
+          display: false,
         },
       },
       y: {
         grid: {
-          display: false, // 모든 Y축의 가로선 숨김
+          display: false, 
         },
         ticks: {
-          display: false, // Y축 레이블 숨기기
+          display: false,
         },
         min: 0,
-        max: 10, // Y축 범위 0에서 10으로 설정
+        max: 10, 
       },
     },
     plugins: {
       legend: {
-        display: false, // 범례 숨기기
+        display: false, 
       },
     },
-    maintainAspectRatio: false, // 차트 비율 고정 해제
+    maintainAspectRatio: false, 
     elements: {
       bar: {
-        borderRadius: 2, // 막대 끝 둥글게 설정
-        barPercentage: 0.5, // 막대 너비 설정 (간격 조절)
+        borderRadius: 2, 
+        barPercentage: 0.5,
       },
     },
   };
