@@ -82,8 +82,8 @@
   margin: auto;
 }
 
-/* signup */
-.signup-container {
+/* signup, editprofile */
+.signup-container, .editprofile-container {
   display: flex;
   justify-content: center; 
   align-items: center;
@@ -95,14 +95,14 @@
   background-repeat: no-repeat;
 }
 
-.signup-box {
+.signup-box, .editprofile-box {
   background-color: rgba(255, 255, 255, 0.9);
   padding: 2rem;
   border-radius: 2px;
   width: 50vw;
 }
 
-.signup-box h2 {
+.signup-box, .editprofile-box h2 {
   text-align: center;
 }
 

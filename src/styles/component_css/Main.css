@@ -134,11 +134,14 @@ header {
   background-color: #fff;
   border-bottom: 1px solid #ddd;
   z-index: 1000; /* 다른 컨텐츠 위에 표시하도록 z-index 설정 */
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .header-left, .header-right {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .brand {
@@ -149,36 +152,77 @@ header {
   margin-right: 5em;
 }
 
-.nav-links a, .login {
-  text-decoration: none;
-  color: black;
-  margin-right: 20px;
-}
-
 .nav-links {
   list-style: none;
   display: flex;
+  flex-grow: 1; 
   gap: 20px;
   padding: 0;
+  justify-content: space-evenly;
+}
+
+.nav-links a, .login {
+  text-decoration: none;
+  font-size: 1.1em;
+  color: black;
+}
+
+.logout, .mypage {
+  background: none;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  color: black;
+}
+
+.mypage-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 150px;
+}
+
+.dropdown-menu li {
+  list-style: none;
+  margin: 0.2em 0;
+}
+
+.dropdown-menu a {
+  text-decoration: none;
+  color: black;
+  display: block;
+  padding: 0.5em 1em; /* 텍스트 내부의 간격 설정 */
 }
 
 @media (max-width: 768px) {
   .header {
-    flex-direction: row; 
+    flex-direction: column;
     justify-content: flex-start; 
   }
 
   .header-left, .header-right {
-    flex-direction: row; 
-    align-items: center; 
     width: 100%;
-    padding: 10px 0;
+    justify-content: space-around;
+  }
+
+  .header-right {
+    margin-top: 10px; /* 작은 화면에서 간격 유지 */
   }
 
   .nav-links {
-    flex-direction: row; 
-    align-items: center; 
     width: 100%;
+    justify-content: space-between;
     margin-top: 10px;
   }
 
@@ -186,7 +230,6 @@ header {
     margin-right: 0; 
   }
 }
-
 
 /* signin css*/
 .signin-container {
