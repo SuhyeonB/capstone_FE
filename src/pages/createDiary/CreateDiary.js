@@ -2,21 +2,32 @@ import React, { useEffect, useState } from 'react';
 import '../../styles/diary.css';
 
 import image_upload from '../../assets/icons/image-upload.png'
+import arrowUp from '../../assets/icons/arrow_up.gif'
+import arrowDwn from '../../assets/icons/arrow_dwn.gif'
 
 const CreateDiary = () => {
     const [typo, setTypo] = useState(0);
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [weather, setWeather] = useState('');
-    //const [visibility, setVisibility] = useState('private');
+    const [ispublic, setPublic] = useState("비공개");
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleSelect = (value) => {
+        setPublic(value);
+        setIsOpen(false);
+    };
 
     useEffect(()=>{
         setTypo(content.length)
     }, [setTypo, content])
+    useEffect(() => {
+        
+    },[])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert(title +"\n" + content + "\n"+weather)
+        alert(title +"\n" + content + "\n"+weather + "\n" + ispublic);
         console.log({
             title,
             content,
@@ -47,16 +58,21 @@ const CreateDiary = () => {
                     </div>
                     <div className='flex-cont diary-element options'>
                         {/* 비공개/전체공개 선택 */}
-                        <div className="diary-options">
-                            <div className="privacy">
-                                <label htmlFor="visibility">전체공개 </label>
-                                {/*
-                                <select id="visibility" value={visibility}
-                                    onChange={(e) => setVisibility(e.target.value)} >
-                                    <option value="private">비공개</option>
-                                    <option value="public">전체공개</option>
-                                </select> */}
+                        <div className="privacy">
+                            <div className="custom-select-box" onClick={() => setIsOpen(!isOpen)} >
+                                {ispublic === 'non-pub' ? '비공개' : '전체공개'}
+                                {isOpen ? 
+                                <img src={arrowUp} alt="arrow_up" className='arrow'/>
+                                : <img src={arrowDwn} alt="arrow_dwn" className='arrow'/>}
                             </div>
+                            {isOpen && (
+                                <div className="custom-select-options">
+                                    <div className={`custom-option ${ispublic === 'non-pub' ? 'selected' : ''}`}
+                                        onClick={() => handleSelect('non-pub', '비공개')} >비공개</div>
+                                    <div className={`custom-option ${ispublic === 'pub' ? 'selected' : ''}`}
+                                        onClick={() => handleSelect('pub', '전체공개')} >전체공개</div>
+                                </div>
+                            )}
                         </div>
                         
                         {/* 날씨 선택 */}
