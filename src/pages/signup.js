@@ -31,7 +31,6 @@ const Signup = () => {
       <div className="signup-box">
         <h2>회원가입</h2>
         <form>
-            
             <span>이름</span>
             <input type='text' className='input-text' placeholder='이름을 입력해주세요' 
             value={name} onChange={e => setName(e.target.value)} required />
