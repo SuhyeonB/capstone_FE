@@ -8,9 +8,11 @@ import Footer from "./components/Footer";
 import Signin from "./pages/signin";
 import Signup from "./pages/signup";
 
-import EditProfile from "./pages/EditProfile";
+import Editprofile from "./pages/Editprofile";
 
 import CreateDiary from "./pages/createDiary/CreateDiary";
+
+import BoardList from "./pages/BoardList";
 
 import ScrollToTop from "./utils/ScrollTolTop";
 
@@ -28,7 +30,9 @@ function App() {
             {/* nav */}
             <Route path='/writediary' element={<CreateDiary/>} />
 
-            <Route path='/editprofile' element={<EditProfile/>} />
+            <Route path='/board' element={<BoardList/>} />
+
+            <Route path='/editprofile' element={<Editprofile/>} />
           </Routes>
           <Footer/>
         </BrowserRouter>

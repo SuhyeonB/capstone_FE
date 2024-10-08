@@ -45,6 +45,7 @@ const Header = () => {
         {isLoggedIn ? (
           <>
             <button className="logout" onClick={handleLogout}>로그아웃</button>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
             <li className="mypage-container" ref={dropdownRef}>
               <button className="mypage" onClick={toggleDropdown}>마이페이지</button>
               {isDropdownOpen && (

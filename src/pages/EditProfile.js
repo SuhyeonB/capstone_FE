@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/Sign.css';
 
-const EditProfile = () => {
+const Editprofile = () => {
     const [pwd, setPwd] = useState(''); // 새 비밀번호
     const [usablePwd, setUsablePwd] = useState(true); // 새 비밀번호 유효성 여부
     const [repwd, setRepwd] = useState(''); // 새 비밀번호 확인
@@ -78,4 +78,4 @@ const EditProfile = () => {
     );
 };
 
-export default EditProfile;
+export default Editprofile;
