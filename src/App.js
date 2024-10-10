@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import Signin from "./pages/signin";
 import Signup from "./pages/signup";
 
-import Editprofile from "./pages/Editprofile";
+import EditProfile from "./pages/EditProfile";
 
 import CreateDiary from "./pages/createDiary/CreateDiary";
 
@@ -28,7 +28,7 @@ function App() {
             {/* nav */}
             <Route path='/writediary' element={<CreateDiary/>} />
 
-            <Route path='/editprofile' element={<Editprofile/>} />
+            <Route path='/editprofile' element={<EditProfile/>} />
           </Routes>
           <Footer/>
         </BrowserRouter>
