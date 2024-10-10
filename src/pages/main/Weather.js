@@ -12,6 +12,7 @@ const Weather = () => {
         const fetchWeatherData = async (lat, lon) => {
             const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`;
             try {
+                console.log("entered into try");
                 const response = await axios.get(apiUrl);
                 // Forced conversion of "Seoul" and "Uijeongbu" to Korean (add other regions if necessary)
                 let cityName = response.data.name;
