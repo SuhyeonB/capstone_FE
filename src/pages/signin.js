@@ -1,36 +1,43 @@
 import React, { useState } from 'react';
 import '../styles/Sign.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Signin() {
-  // id와 pw를 관리할 상태 변수.
-  const [id, setId] = useState('');
-  const [pw, setPw] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   // 로그인 버튼 클릭 시 실행되는 함수.
-  const handleLoginClick = () => {
-    if (!id && !pw) {
-      alert('아이디와 비밀번호를 모두 입력하세요.');
-    } else if (!id) {
-      alert('아이디를 입력하세요.');
-      resetFields();
-    } else if (!pw) {
-      alert('비밀번호를 입력하세요.');
-      resetFields();
-    } else {
-      alert(`로그인이 성공적으로 처리되었습니다.`);
-    }
-  }
+  const handleLoginClick = async () => {
+    if (!email) { alert("아이디를 입력하세요."); }
+    if (email && !password) { alert("비밀번호를 입력하세요."); }
+    
+    try {
+      const response = await axios.post('http://localhost:8080/api/users/signin',  {
+        email: email,
+        password : password,
+      });
 
-  // id, pw 초기화.
-  const resetFields = () => {
-    setId('');
-    setPw('');
-  };
+      const {accessToken, refreshToken} = response.data;
+      console.log('User signed in successfully: ', response.data);
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleLoginClick(); // Enter 키를 눌렀을 때 로그인 버튼 클릭 함수 호출.
+      localStorage.setItem('acessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+
+    
+      navigate('../');
+    } catch (error) {
+      const status =error.response?.status;
+      const message = error.response?.data?.status || error.message;
+
+      if (status === 401) {
+        alert('비밀번호가 잘못되었습니다.');
+      } else if (status === 404) {
+        alert('존재하지 않는 회원입니다.');
+      } else { //
+        alert('Error during login:', message);
+      }
     }
   };
 
@@ -40,20 +47,21 @@ function Signin() {
         <h2>로그인</h2>
         <form className="signin-form">
           <input 
-            type="text" 
-            placeholder="아이디" 
+            type="email" 
+            placeholder="이메일" 
             className="signin-input" 
-            value={id} 
-            onChange={(e) => setId(e.target.value)} 
-            onKeyDown={handleKeyDown} // ENTER 입력 감지.
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+            required
           />
           <input 
             type="password" 
             placeholder="비밀번호" 
             className="signin-input" 
-            value={pw} 
-            onChange={(e) => setPw(e.target.value)} 
-            onKeyDown={handleKeyDown} // ENTER 입력 감지.
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+            onKeyDown={(e) => {if (e.key === 'Enter') handleLoginClick(); }} // ENTER 입력 감지.
+            required
           />
           <button 
             className="signin-button" 
