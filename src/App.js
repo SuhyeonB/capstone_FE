@@ -12,6 +12,8 @@ import EditProfile from "./pages/EditProfile";
 
 import CreateDiary from "./pages/createDiary/CreateDiary";
 
+import Diaryboard from "./pages/createDiary/Diaryboard";
+
 import ScrollToTop from "./utils/ScrollTolTop";
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
 
             {/* nav */}
             <Route path='/writediary' element={<CreateDiary/>} />
+
+            <Route path='/board' element={<Diaryboard/>} />
 
             <Route path='/editprofile' element={<EditProfile/>} />
           </Routes>

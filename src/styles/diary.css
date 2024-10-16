@@ -111,7 +111,7 @@
     cursor: pointer;
 }
 
-.weather .sunnybtn{
+.weather .sunnybtn, .sunny {
     margin-left: 0.5em;
     background: url('../assets/icons/9197.png') no-repeat center center;
     background-size: cover;
@@ -169,4 +169,109 @@
 .submit-btn:hover {
     background-color: #5c5cfe;
     color: #ffffff;
+}
+
+
+/* Diaryboard.css */
+.diary-board {
+    margin: 2em auto;
+    max-width: 1050px;
+    font-family: NotoSansCJKKR;
+}
+
+.board-title {
+    margin: 2.5em 0 2.5em 1em;
+    font-size: 1.7em;
+}
+
+.diary-list {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 1em; 
+    justify-content: space-between; 
+    padding: 1em;
+}
+
+.diary-entry {
+    background: #f9f9f9;
+    padding: 1.5em;
+    border: 0.01em solid #ebebeb;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1 1 calc(33.333% - 1em); 
+    box-sizing: border-box;
+    max-width: 32%; 
+}
+
+h2 {
+    margin: 0.5em 0;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.diary-entry p {
+    margin: 1em 0;
+    flex-grow: 1;
+    overflow: visible;
+    display: block;
+    text-overflow: initial;
+}
+
+.diary-meta {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: #888;
+    font-size: 0.875em;
+}
+
+.user-name {
+    font-size: 0.9em; 
+    margin-right: 0.5em; 
+    color: #333; 
+}
+
+.createdAt {
+    font-size: 0.9em;
+    color: #999; 
+}
+
+.weather-icon {
+    margin-left: auto;
+    width: 45px; 
+    height: 45px;
+    display: inline-block;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.sunny {
+    background-image: url('/src/assets/icons/9189.png');
+}
+  
+.rainy {
+    background-image: url('/src/assets/icons/9188.png');
+}
+
+.cloudy {
+    background-image: url('/src/assets/icons/9190.png');
+}
+
+.partly-cloudy {
+    background-image: url('/src/assets/icons/9191.png');
+}
+
+@media (max-width: 768px) {
+    .diary-entry {
+        flex: 1 1 calc(45% - 1em); 
+        max-width: 48%;
+    }
+}
+
+@media (max-width: 480px) {
+    .diary-entry {
+        flex: 1 1 calc(100% - 1em); 
+        max-width: 100%;
+    }
 }

@@ -654,6 +654,32 @@ form {
   margin-bottom: 3vh;
 }
 
+.weather-icon {
+  width: 60px;
+  height: 60px;
+  margin-right: 1vw;
+}
+
 .city-name {
-  margin-right: 0.5vw; /* 도시 이름과 온도 사이에 여백 추가 */
+  margin-right: 0.5vw;
+}
+
+.clear-sky {
+  background-image: url('/src/assets/icons/9189.png'); 
+}
+
+.rain {
+  background-image: url('/src/assets/icons/9188.png'); 
+}
+
+.snow {
+  background-image: url('/src/assets/icons/9191.png'); 
+}
+
+.cloudy {
+  background-image: url('/src/assets/icons/9190.png'); 
+}
+
+.partly-cloudy {
+  background-image: url('/src/assets/icons/9191.png');
 }
