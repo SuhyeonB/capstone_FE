@@ -13,6 +13,7 @@ import EditProfile from "./pages/EditProfile";
 import CreateDiary from "./pages/createDiary/CreateDiary";
 
 import Diaryboard from "./pages/createDiary/Diaryboard";
+import MyDiaryboard from "./pages/createDiary/MyDiaryboard";
 
 import ScrollToTop from "./utils/ScrollTolTop";
 
@@ -31,7 +32,8 @@ function App() {
             <Route path='/writediary' element={<CreateDiary/>} />
 
             <Route path='/board' element={<Diaryboard/>} />
-
+            <Route path='/diary' element={<MyDiaryboard/>} />
+            
             <Route path='/editprofile' element={<EditProfile/>} />
           </Routes>
           <Footer/>

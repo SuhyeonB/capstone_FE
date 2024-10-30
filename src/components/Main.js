@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/component_css/Main.css';
+import '../styles/component_css/Main2.css';
 import Calendar from '../pages/main/Calendar';
 import Happiness from '../pages/main/Happiness';
 import Weather from '../pages/main/Weather';

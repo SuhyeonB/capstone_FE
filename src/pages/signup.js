@@ -62,12 +62,12 @@ const Signup = () => {
         e.preventDefault();
         if (verified) {
             try {
-                const response = await axios.post('http://localhost:8080/api/users', {
+                await axios.post('http://localhost:8080/api/users', {
                     name: name,
                     email: email,
                     password: pwd
                 });
-                console.log('User signed up successfully: ', response.data);
+                // console.log('User signed up successfully: ', response.data);
             } catch (error) {
                 console.error('Error during signup:', error.response?.data || error.message);
             }

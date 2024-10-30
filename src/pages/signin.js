@@ -1,44 +1,43 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import '../styles/Sign.css'
-import dummy_user from '../dummy/dummy_user';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Signin() {
-  const [id, setId] = useState('');
-  const [pw, setPw] = useState('');
-  const navigate = useNavigate(); // 페이지 이동을 위한 네비게이션 훅
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleLoginClick = () => {
-    if (!id && !pw) {
-      alert('이메일과 비밀번호를 모두 입력하세요.');
-    } else if (!id) {
-      alert('이메일을 입력하세요.');
-      resetFields();
-    } else if (!pw) {
-      alert('비밀번호를 입력하세요.');
-      resetFields();
-    } else {
-      const user = dummy_user.find(user => user.email === id && user.password === pw);
+  // 로그인 버튼 클릭 시 실행되는 함수.
+  const handleLoginClick = async () => {
+    if (!email) { alert("아이디를 입력하세요."); }
+    if (email && !password) { alert("비밀번호를 입력하세요."); }
+    
+    try {
+      const response = await axios.post('http://localhost:8080/api/users/signin',  {
+        email: email,
+        password : password,
+      });
 
-      if (user) {
-        alert(`${user.name}님, 로그인에 성공했습니다.`);
-        navigate('/'); // 로그인 성공 시 메인 페이지로 리다이렉트
-      } else {
-        alert('이메일 또는 비밀번호가 일치하지 않습니다.');
-        resetFields();
+      const {accessToken, refreshToken} = response.data;
+      console.log('User signed in successfully: ', response.data);
+
+      localStorage.setItem('acessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+
+    
+      navigate('../');
+    } catch (error) {
+      const status =error.response?.status;
+      const message = error.response?.data?.status || error.message;
+
+      if (status === 401) {
+        alert('비밀번호가 잘못되었습니다.');
+      } else if (status === 404) {
+        alert('존재하지 않는 회원입니다.');
+      } else { //
+        alert('Error during login:', message);
       }
-    }
-  }
-
-  const resetFields = () => {
-    setId('');
-    setPw('');
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleLoginClick(); // Enter 키를 눌렀을 때 로그인 버튼 클릭 함수 호출.
     }
   };
 
@@ -48,40 +47,41 @@ function Signin() {
         <h2>로그인</h2>
         <form className="signin-form">
           <input 
-            type="text" 
+            type="email" 
             placeholder="이메일" 
             className="signin-input" 
-            value={id} 
-            onChange={(e) => setId(e.target.value)} 
-            onKeyDown={handleKeyDown} // ENTER 입력 감지
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+            required
           />
           <input 
             type="password" 
             placeholder="비밀번호" 
             className="signin-input" 
-            value={pw} 
-            onChange={(e) => setPw(e.target.value)} 
-            onKeyDown={handleKeyDown} // ENTER 입력 감지
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+            onKeyDown={(e) => {if (e.key === 'Enter') handleLoginClick(); }} // ENTER 입력 감지.
+            required
           />
           <button 
-            type="button"
             className="signin-button" 
             onClick={handleLoginClick}
           >
             로그인
           </button>
           <div className="signin-options">
-            <label>
+              <label>
               <input type="checkbox" /> 자동 로그인
             </label>
             <Link to='/signup' className="link-button">회원가입</Link>
           </div>
           <button className="kakao-button">카카오 로그인</button>
           <button className="naver-button">네이버 로그인</button>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
   );
 }
 
 export default Signin;
+
