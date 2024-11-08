@@ -4,7 +4,7 @@ const dummy_post = [
     title: "A Wonderful Day",
     content: "Today was a really wonderful day. I took a long walk through the park,enjoying the fresh air and beautiful weather. I also read a couple of chapters from a great book I recently started. The peace and quiet were exactly what I needed to recharge for the week ahead.",
     createdAt: "2024-10-10",
-    public: 0,
+    public: 1,
     user_id: 101, // 홍길동
     weather: "sunny"
   },

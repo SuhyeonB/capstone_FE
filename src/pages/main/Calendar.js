@@ -138,7 +138,7 @@ const Calendar = () => {
           <div className="days">{renderCalendar()}</div>
         </div>
         <button className="attendance-btn" onClick={handleAttendance}>
-          {`${today.getMonth() + 1}/${today.getDate()}일 출첵!`}
+          <strong>{`${today.getMonth() + 1}/${today.getDate()}일 출첵!`}</strong>
         </button>
       </div>
     </div>

@@ -11,7 +11,7 @@ const Happiness = () => {
   const [currentMonth, setCurrentMonth] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [message, setMessage] = useState('');
-  const [average, setAverage] = useState(0); // 평균 점수 상태 관리
+  const [average, setAverage] = useState(0);
 
   useEffect(() => {
     const today = new Date();
@@ -19,15 +19,13 @@ const Happiness = () => {
     setCurrentMonth(today.toLocaleString('ko-KR', { month: 'long' }));
   }, []);
 
-  // 평균 점수 계산 (상태로 관리)
   useEffect(() => {
     const validData = happinessData.filter(value => value >= 0);
     const sum = validData.reduce((a, b) => a + b, 0);
     const avg = validData.length > 0 ? (sum / validData.length).toFixed(2) : 0;
-    setAverage(avg); // 평균 점수 상태 업데이트
-  }, [happinessData]); // happinessData가 변경될 때 실행
+    setAverage(avg);
+  }, [happinessData]);
 
-  // 평균 점수에 따라 메시지 업데이트
   useEffect(() => {
     let newMessage = '';
     if (average >= 8) {
@@ -42,7 +40,7 @@ const Happiness = () => {
       newMessage = '이번 달은 많이 힘들었던 것 같아요. 작은 행복부터 찾아보세요.';
     }
     setMessage(newMessage);
-  }, [average]); // 평균 점수가 변경될 때만 실행
+  }, [average]);
 
   const handleInputChange = (e) => {
     setInputValue(parseFloat(e.target.value));
@@ -52,8 +50,8 @@ const Happiness = () => {
     e.preventDefault();
     const newHappinessData = [...happinessData];
     newHappinessData[currentDay - 1] = inputValue;
-    setHappinessData(newHappinessData); // 행복지수 업데이트
-    setIsModalOpen(false); // 모달 닫기
+    setHappinessData(newHappinessData);
+    setIsModalOpen(false);
   };
 
   const chartData = {
@@ -69,6 +67,7 @@ const Happiness = () => {
   };
 
   const chartOptions = {
+    animation: false,
     scales: {
       x: {
         grid: { display: false },
@@ -97,38 +96,43 @@ const Happiness = () => {
         <Bar data={chartData} options={chartOptions} />
       </div>
 
-      <div className="average">
+      <div className="average-section">
         <span className="average-text"><strong>평균</strong></span>
-        <span className="average-score">
-          <strong>{average} 점</strong>
-        </span>
+        <span className="average-score"><strong>{average} 점</strong></span>
       </div>
 
       <div className="message">
         <p>{message}</p>
       </div>
 
-      <button className="register-button" onClick={() => setIsModalOpen(true)}>
-        행복지수 등록
+      <button className="register-btn" onClick={() => setIsModalOpen(true)}>
+      <strong>행복지수 등록</strong>
       </button>
 
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">
-            <h3>행복지수 등록(0~10)</h3>
-            <form onSubmit={handleSubmit}>
+            <h3 className="modal-title">행복지수 등록(0~10)</h3>
+            <form className="modal-form" onSubmit={handleSubmit}>
               <p>오늘은 {currentDay}일입니다.</p>
               <input
+                className="modal-input"
                 type="number"
-                id="happiness-input"
                 step="0.5"
                 min="0"
                 max="10"
                 value={inputValue}
                 onChange={handleInputChange}
               />
-              <button type="submit" className="submit-button">등록</button>
-              <button onClick={() => setIsModalOpen(false)} className="close-button">닫기</button>
+              <div className="button-group">
+                <button type="submit" className="submit-button">등록</button>
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="close-button">
+                  닫기
+                </button>
+              </div>
             </form>
           </div>
         </div>

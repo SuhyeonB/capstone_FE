@@ -80,30 +80,8 @@ textarea {
   background-color: #f8f8f8;
 }
 
-.text, .intro-text {
-  font-size: x-large;
-  color: white;
-}
-
-.text {
-  transform: translateY(-15vh);
-}
-
-.intro-text {
-  margin-top: 4.5em;
-  transform: none;
-  margin-bottom: 3vh;
-}
-
 .invisible {
   display: none;
-}
-/**/
-
-.fade-in-up {
-  opacity: 0;
-  transform: translateY(-13vh);
-  animation: fadeInUp 2s ease-out forwards;
 }
 
 @keyframes fadeInUp {
@@ -230,314 +208,45 @@ header {
     margin-right: 0; 
   }
 }
-
-/* Calendar, Happiness.css */
-.calendar-title, .happiness-title {
-  text-align: left;
-  font-size: 1.45em;
-  margin: 0 4em 2em 0;
-}
-
-.calendar-container, .happiness-card {
-  height: 45vh;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 1.5em;
-  text-align: center;
-  margin: 0 auto;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-/*.calendar-container {
-  width: 65vh;
-}
-
-.happiness-card {
-  width: 40vh;
-}*/
-
-.attendance-btn, .register-button {
-  margin: 2.1em 0 0 0.4em;
-  padding: 0.6em 0.8em 0.7em 0.7em;
-  background-color: #000;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 6px;
-  position: absolute;
-  bottom:  1.5em;
-  right:  1.5em;
-  font-size: 0.78em;
-}
-
-.attendance-btn:hover, .register-button:hover {
-  background-color: #333;
-}
-
-/* Calendar.css*/
-.calendar-header {
+/**/
+.content-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem;
 }
 
-.calendar-box {
+
+.text, .intro-text {
+  font-size: 2em;
+  color: white;
+}
+
+.text {
+  transform: translateY(-15vh);
+}
+
+.intro-text {
+  margin-top: 4.5em;
+  transform: none;
+  margin-bottom: 3vh;
+}
+/**/
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(-13vh);
+  animation: fadeInUp 2s ease-out forwards;
+}
+
+.weather-info {
   display: flex;
-  align-items: center;
-  font-size: 0.9em;
-  margin-bottom: 2.5%;
-}
-
-.calendar-box .dot {
-  width: 0.3vw;
-  height: 0.3vw;
-  border-radius: 50%;
-  margin: 0 0.2em 0.15em 0.5em;
-}
-
-.attendance {
-  background-color: blue;
-}
-
-.diary {
-  background-color: orange;
-}
-
-.month {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 6%;
-  align-items: center;
-  position: relative;
-}
-
-.month i {
-  font-size: 1.6vh;
-  cursor: pointer;
-  margin: 0 1.5em;
-}
-
-.month div {
-  font-size: 1em;
-}
-
-.weekdays, .days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
-  font-size: 0.97em;
-  gap: 6px;
-}
-
-.weekdays {
-  font-weight: bold;
-}
-
-.days .day, .prev-date, .next-date {
-  position: relative;
-  width: 2.8vw;
-  height: 4.7vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  color: black;
-  font-size: 0.97em;
-  cursor: pointer;
-}
-
-.prev-date, .next-date {
-  color: rgba(0, 0, 0, 0.2);
-}
-
-.today {
-  background-color: #fff;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
   align-items: center;
   color: #fff;
-  box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.2);
-}
-
-.attendance-dot {
-  width: 0.3vw;
-  height: 0.3vw;
-  background-color: blue;
-  border-radius: 50%;
-  position: absolute;
-  top: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.today-date {
-  font-size: 11px;
-  color: black;
-}
-
-.sun {
-  color: red;
-}
-
-.sat {
-  color: blue;
-}
-
-@media (max-width: 768px) {
-  .calendar-container {
-    width: 95%;
-    height: auto;
-    padding: 15px;
-  }
-
-  .month div, .month i {
-    font-size: 14px;
-  }
-
-  .weekdays div, .days .day {
-    padding: 5px 0;
-  }
-
-  .attendance-btn {
-    padding: 6px 10px;
-  }
-
-  .calendar-box {
-    font-size: 12px;
-  }
-}
-
-/* Happiness.css */
-.chart-container {
-  width: 100%;
-  height: 150px;
-}
-
-.average {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 60px;
-  font-size: 16px;
-  padding: 0 10px;
-  margin-bottom: 10px;
-}
-
-.average-text {
-  font-weight: bold;
-  color: #000000;
-  font-size: 19px;
-  margin-right: 45px;
-}
-
-.average-score {
-  font-weight: bold;
-  font-size: 19px;
-  color: #000000;
-  margin-left: 60px;
-}
-
-.description {
-  font-size: 12px;
-  color: #555;
-  padding: 10px 0;
-}
-
-/* 행복지수 입력 창 */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  width: 300px;
-  text-align: center;
-}
-
-.modal-content h3 {
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 15px;
-}
-
-input {
-  padding: 5px;
-  margin: 10px 0;
-  font-size: 14px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.submit-button, .close-button {
-  display: inline-block;
-  margin: 3px 5px 0 5px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.submit-button {
-  background-color: #000000;
-  color: #ffffff;
-}
-
-.submit-button:hover {
-  background-color: #000000;
-}
-
-.close-button {
-  background-color: #ffffff;
-  color: #000;
-}
-
-.close-button:hover {
-  background-color: #ffffff;
-}
-
-/* 메인페이지의 요소를 가로로 배치 */
-.content-header, .content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1.5em; 
-}
-
-.content {
-  margin-top: -10vh;
-}
-
-@media (max-width: 768px) {
-  .content {
-    flex-direction: column;
-    align-items: center;
-    margin-top: 0; 
-  }
-
-  .calendar, .happiness-index {
-    width: 100%;
-    margin: 10px 0;
-  }
 }
 
 .city-name, .temperature {
-  font-size: x-large;
+  font-size: 1.2em;
   color: #fff;
 }
 
@@ -582,4 +291,330 @@ form {
 
 .partly-cloudy {
   background-image: url('/src/assets/icons/9191.png');
+}
+
+/* 캘린더 전체 레이아웃 */
+.calendar-title, .happiness-title {
+  text-align: left;
+  font-size: 1.45em;
+  margin: 0 5em 1.5em 0;
+}
+
+.calendar-container, .happiness-card {
+  height: 440px;
+  display: flex;
+  position: relative;
+  text-align: center;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 2em;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.happiness-card {
+  width: 90%;
+  max-width: 350px;
+}
+
+/* 캘린더 헤더 */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2em;
+  width: 100%;
+}
+
+.calendar-box {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+  margin-left: 6em;
+}
+
+.calendar-box .dot {
+  width: 0.3em;
+  height: 0.3em;
+  border-radius: 50%;
+  margin: 0 0.2em 0.15em 0.5em;
+}
+
+.attendance {
+  background-color: blue;
+}
+
+.diary {
+  background-color: orange;
+}
+
+/* 출석일 파란점 */
+.attendance-dot {
+  width: 0.3em;
+  height: 0.3em;
+  background-color: blue;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 출석 체크 버튼 */
+.attendance-btn, .register-btn {
+  padding: 0.6em 1em;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.78em;
+  cursor: pointer;
+  position: absolute; 
+  bottom: 1em;
+  right: 1em;
+  transition: background-color 0.3s;
+}
+
+.attendance-btn:hover, .register-button:hover {
+  background-color: #000;
+}
+
+.month {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  gap: 1.2em;
+  min-width: 160px; 
+  text-align: center;
+}
+
+.month i {
+  cursor: pointer;
+}
+
+/* 요일 스타일 */
+.weekdays {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.weekdays div {
+  font-weight: bold;
+  padding: 0.5em 0;
+}
+
+.weekdays, .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.sun {
+  color: red;
+}
+
+.sat {
+  color: blue;
+}
+
+.weekdays div, .day, .prev-date, .next-date {
+  height: 1.7em;
+  width: 1.7em;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+}
+
+.prev-date, .next-date {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.day:hover {
+  background-color: #fff;
+}
+
+.today {
+  background-color: #fff;
+  border: 2px solid #fff;
+  color: #000;
+  border-radius: 50%;
+  box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .calendar-container {
+    max-width: 100%;
+    padding: 1em;
+  }
+
+  .days {
+    gap: 0.3em;
+  }
+
+  .attendance-button {
+    padding: 0.3em 0.8em;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 1.5em;
+  width: 60%;
+  max-width: 330px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-input {
+  padding: 0.3em;
+  margin: 1em 0 0 1em;
+  font-size: 1em;
+  width: 100%;
+  max-width: 150px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5em;
+  margin-top: 1em;
+  width: 100%;
+  max-width: 300px;
+}
+
+.submit-button, .close-button {
+  flex: 1;
+  padding: 0.3em;
+  font-size: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+}
+
+.close-button {
+  background-color: #f5f5f5;
+  color: black;
+  border: 1px solid #000;
+}
+
+.close-button:hover {
+  background-color: #fff;
+}
+
+
+.chart-container, .message {
+  width: 100%;
+  margin-top: 1em;
+}
+
+.average-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1em;
+  margin-top: 1em;
+}
+
+.average-text {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-left: 1em;
+}
+
+.average-score {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-right: 1em;
+}
+
+.message {
+  margin: 0.2em 0 0 1em;
+  font-size: 1em;
+  color: #000;
+  text-align: left; 
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    width: 90%;
+    padding: 1em;
+  }
+
+  .chart-container {
+    height: 150px;
+  }
+
+  .submit-button, .close-button {
+    width: 100%; 
+    margin-top: 0.5em;
+  }
+
+  .average-section {
+    flex-direction: column; 
+    align-items: center;
+  }
+}
+
+.content-header, .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 5em; 
+}
+
+.content {
+  margin-top: -10vh;
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0; 
+  }
+
+  .calendar, .happiness-index {
+    width: 100%;
+    margin: 10px 0;
+  }
 }
