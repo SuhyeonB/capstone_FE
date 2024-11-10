@@ -1,44 +1,57 @@
 import React, { useState } from 'react';
-import '../styles/Sign.css'
+import '../styles/Sign.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../store/actions/userActions';
 
 function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // 로그인 버튼 클릭 시 실행되는 함수.
   const handleLoginClick = async () => {
-    if (!email) { alert("아이디를 입력하세요."); }
-    if (email && !password) { alert("비밀번호를 입력하세요."); }
-    
+    if (!email) { alert("아이디를 입력하세요."); return; }
+    if (!password) { alert("비밀번호를 입력하세요."); return; }
+
     try {
-      const response = await axios.post('http://localhost:8080/api/users/signin',  {
-        email: email,
-        password : password,
+      const response = await axios.post('http://localhost:8080/api/users/signin', {
+        email,
+        password,
       });
 
-      const {accessToken, refreshToken} = response.data;
-      console.log('User signed in successfully: ', response.data);
+      const { accessToken, refreshToken, userId, username } = response.data;
 
-      localStorage.setItem('acessToken', accessToken);
+      localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
 
-    
+      // 유저 정보를 리덕스에 저장
+      dispatch(setUser(userId, username));
+      
       navigate('../');
     } catch (error) {
-      const status =error.response?.status;
+      const status = error.response?.status;
       const message = error.response?.data?.status || error.message;
 
       if (status === 401) {
         alert('비밀번호가 잘못되었습니다.');
       } else if (status === 404) {
         alert('존재하지 않는 회원입니다.');
-      } else { //
-        alert('Error during login:', message);
+      } else {
+        alert('로그인 중 오류:', message);
       }
     }
+  };
+
+  // 카카오 로그인 핸들러
+  const handleKakaoLogin = () => {
+    window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=YOUR_KAKAO_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code';
+  };
+
+  // 구글 로그인 핸들러
+  const handleGoogleLogin = () => {
+    window.location.href = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=YOUR_GOOGLE_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=email profile';
   };
 
   return (
@@ -60,26 +73,35 @@ function Signin() {
             className="signin-input" 
             value={password} 
             onChange={(e) => setPassword(e.target.value)} 
-            onKeyDown={(e) => {if (e.key === 'Enter') handleLoginClick(); }} // ENTER 입력 감지.
+            onKeyDown={(e) => { if (e.key === 'Enter') handleLoginClick(); }}
             required
           />
           <button 
+            type="button" 
             className="signin-button" 
             onClick={handleLoginClick}
           >
             로그인
           </button>
           <div className="signin-options">
-              <label>
+            <label>
               <input type="checkbox" /> 자동 로그인
             </label>
             <Link to='/signup' className="link-button">회원가입</Link>
           </div>
-          <button className="kakao-button">카카오 로그인</button>
-          <button className="naver-button">네이버 로그인</button>
-          </form>
-        </div>
+          <button 
+            type="button" 
+            className="kakao-button" 
+            onClick={handleKakaoLogin}
+          ></button>
+          <button 
+            type="button" 
+            className="google-button" 
+            onClick={handleGoogleLogin}
+          ></button>
+        </form>
       </div>
+    </div>
   );
 }
 

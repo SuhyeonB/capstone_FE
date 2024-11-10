@@ -1,0 +1,37 @@
+const dummy_happy = [
+
+  { happy_id: 1, user_id: 101, score: 6, createdAt: '2024-10-01' },
+  { happy_id: 2, user_id: 101, score: 0, createdAt: '2024-10-02' },
+  { happy_id: 3, user_id: 101, score: 0, createdAt: '2024-10-03' },
+  { happy_id: 4, user_id: 101, score: 8, createdAt: '2024-10-04' },
+  { happy_id: 5, user_id: 101, score: 10, createdAt: '2024-10-05' },
+  { happy_id: 6, user_id: 101, score: 10, createdAt: '2024-10-06' },
+  { happy_id: 7, user_id: 101, score: 7, createdAt: '2024-10-07' },
+  { happy_id: 8, user_id: 101, score: 1, createdAt: '2024-10-08' },
+  { happy_id: 9, user_id: 101, score: 9, createdAt: '2024-10-09' },
+  { happy_id: 10, user_id: 101, score: 5, createdAt: '2024-10-10' },
+  { happy_id: 11, user_id: 101, score: 4, createdAt: '2024-10-11' },
+  { happy_id: 12, user_id: 101, score: 6, createdAt: '2024-10-12' },
+  { happy_id: 13, user_id: 101, score: 10, createdAt: '2024-10-13' },
+  { happy_id: 14, user_id: 101, score: 0, createdAt: '2024-10-14' },
+  { happy_id: 15, user_id: 101, score: 7, createdAt: '2024-10-15' },
+  { happy_id: 16, user_id: 101, score: 3, createdAt: '2024-10-16' },
+  { happy_id: 17, user_id: 101, score: 9, createdAt: '2024-10-17' },
+  { happy_id: 18, user_id: 101, score: 5, createdAt: '2024-10-18' },
+  { happy_id: 19, user_id: 101, score: 4, createdAt: '2024-10-19' },
+  { happy_id: 20, user_id: 101, score: 8, createdAt: '2024-10-20' },
+  { happy_id: 21, user_id: 101, score: 2, createdAt: '2024-10-21' },
+  { happy_id: 22, user_id: 101, score: 6, createdAt: '2024-10-22' },
+  { happy_id: 23, user_id: 101, score: 0, createdAt: '2024-10-23' },
+  { happy_id: 24, user_id: 101, score: 10, createdAt: '2024-10-24' },
+  { happy_id: 25, user_id: 101, score: 3, createdAt: '2024-10-25' },
+  { happy_id: 26, user_id: 101, score: 7, createdAt: '2024-10-26' },
+  { happy_id: 27, user_id: 101, score: 2, createdAt: '2024-10-27' },
+  { happy_id: 28, user_id: 101, score: 5, createdAt: '2024-10-28' },
+  { happy_id: 29, user_id: 101, score: 9, createdAt: '2024-10-29' },
+  { happy_id: 30, user_id: 101, score: 1, createdAt: '2024-10-30' },
+  { happy_id: 31, user_id: 101, score: 8, createdAt: '2024-10-31' },
+  
+];
+
+export default dummy_happy;

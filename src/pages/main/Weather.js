@@ -58,11 +58,26 @@ const Weather = () => {
         return <div>{error}</div>;
     }
 
+    const weatherMain = weatherData.weather[0].main.toLowerCase();
+    let weatherIconClass = '';
+    if (weatherMain.includes('clear')) {
+        weatherIconClass = 'clear-sky';
+    } else if (weatherMain.includes('rain')) {
+        weatherIconClass = 'rain';
+    } else if (weatherMain.includes('snow')) {
+        weatherIconClass = 'snow';
+    } else if (weatherMain.includes('clouds')) {
+        weatherIconClass = 'cloudy';
+    } else if (weatherMain.includes('partly')) {
+        weatherIconClass = 'partly-cloudy';
+    }
+
     return (
         <div className="weather-container">
             <div className="weather-box">
                 <p className="city-name">{weatherData.name}</p>
-                <p className="temperature">{Math.round(weatherData.main.temp)}°C</p> 
+                <p className="temperature">{Math.round(weatherData.main.temp)}°C</p>
+                <div className={`weather-icon ${weatherIconClass}`}></div>
             </div>
         </div>
     );

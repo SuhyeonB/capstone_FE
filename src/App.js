@@ -8,9 +8,14 @@ import Footer from "./components/Footer";
 import Signin from "./pages/signin";
 import Signup from "./pages/signup";
 
-import EditProfile from "./pages/EditProfile";
+import Mypage from "./pages/Mypage";
 
 import CreateDiary from "./pages/createDiary/CreateDiary";
+
+import Diaryboard from "./pages/createDiary/Diaryboard";
+import MyDiaryboard from "./pages/createDiary/MyDiaryboard";
+
+import DiaryDetail from "./pages/createDiary/DiaryDetail";
 
 import ScrollToTop from "./utils/ScrollTolTop";
 
@@ -28,7 +33,12 @@ function App() {
             {/* nav */}
             <Route path='/writediary' element={<CreateDiary/>} />
 
-            <Route path='/editprofile' element={<EditProfile/>} />
+            <Route path='/board' element={<Diaryboard/>} />
+            <Route path='/diary' element={<MyDiaryboard/>} />
+
+            <Route path="/diary/:postId" element={<DiaryDetail />} />
+            
+            <Route path='/mypage' element={<Mypage/>} />
           </Routes>
           <Footer/>
         </BrowserRouter>

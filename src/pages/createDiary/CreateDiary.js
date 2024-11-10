@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/diary.css';
-
-import image_upload from '../../assets/icons/image-upload.png'
-import arrowUp from '../../assets/icons/arrow_up.gif'
-import arrowDwn from '../../assets/icons/arrow_dwn.gif'
+import api from '../../api/interceptor';
+import image_upload from '../../assets/icons/image-upload.png';
+import arrowUp from '../../assets/icons/arrow_up.gif';
+import arrowDwn from '../../assets/icons/arrow_dwn.gif';
 
 const CreateDiary = () => {
     const [typo, setTypo] = useState(0);
@@ -12,32 +12,63 @@ const CreateDiary = () => {
     const [weather, setWeather] = useState('');
     const [ispublic, setPublic] = useState("비공개");
     const [isOpen, setIsOpen] = useState(false);
+    const [showModal, setShowModal] = useState(true);
 
     const handleSelect = (value) => {
         setPublic(value);
         setIsOpen(false);
     };
 
-    useEffect(()=>{
-        setTypo(content.length)
-    }, [setTypo, content])
     useEffect(() => {
-        
-    },[])
+        setTypo(content.length);
+    }, [content]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert(title +"\n" + content + "\n"+weather + "\n" + ispublic);
-        console.log({
-            title,
-            content,
-            weather,
-            //visibility
-        });
+        try {
+            const response = await api.post('/api/diary', {
+                title,
+                content,
+                weather,
+                visibility: ispublic === 'pub' ? '전체공개' : '비공개'
+            });
+            alert("일기가 성공적으로 등록되었습니다.");
+            console.log("서버 응답:", response.data);
+        } catch (error) {
+            console.error("Failed to create diary:", error);
+            alert("일기 등록 중 오류가 발생했습니다.");
+        }
     };
+
+    const handleDiaryCreate = () => {
+        setShowModal(false);
+        window.open('http://localhost:8501', '_blank'); // 새 탭에서 Streamlit 페이지로 이동
+    };
+
+    const handleDiaryWrite = () => {
+        setShowModal(false);
+    };
+
     return (
         <div className="container">
-            <h1>새로운 일기 작성</h1>
+            {showModal && (
+                <div className="diarymodal-background">
+                    <div className="diarymodal">
+                        <div className="diarymodal-option" onClick={handleDiaryCreate}>
+                            <div className="ai-icon"></div>
+                            <p>일기 작성이 어려우신가요? <br/>AI가 도와드릴게요!<br />쉽고 간편하게 일기를 생성해 보세요.</p>
+                            <button>일기생성 하기</button>
+                        </div>
+                        <div className="diarymodal-option" onClick={handleDiaryWrite}>
+                            <div className="create-icon"></div>
+                            <p>오늘 하루를 직접 기록해 보세요.<br />편하게 일기를 작성할 수 있어요!</p>
+                            <button>일기작성 하기</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            <h1 className="board-title">새로운 일기 작성</h1>
             <p className='align-right'>{typo}/1000자</p>
             <div className='flex-cont'>
                 <div className="cont-2 cont-box">
@@ -73,8 +104,7 @@ const CreateDiary = () => {
                                         onClick={() => handleSelect('pub', '전체공개')} >전체공개</div>
                                 </div>
                             )}
-                        </div>
-                        
+                        </div>                        
                         {/* 날씨 선택 */}
                         <div className="weather">
                             <span>날씨 선택</span>
@@ -98,14 +128,12 @@ const CreateDiary = () => {
                         </div>
                     </div>
                 </div>
-
                 {/* 내용 입력 */}
                 <div className='cont-2'>
                     <div className='cont-box diary-content'>
-                    <textarea value={content} onChange={(e) => setContent(e.target.value)}
+                        <textarea value={content} onChange={(e) => setContent(e.target.value)}
                         placeholder="내용을 입력하세요."/>
                     </div>
-                    
                     {/* 제출 버튼 */}
                     <button className="submit-btn cont-box" onClick={handleSubmit}>일기 등록 완료</button>
                 </div>

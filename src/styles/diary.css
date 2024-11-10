@@ -4,7 +4,11 @@
     gap: 20px;
 }
 
-.img-upload {
+.cont-box {
+    box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.2);
+}
+
+.img-upload, .img-display {
     height: 60%;
     display: flex;
     flex-direction: column;
@@ -12,6 +16,11 @@
     align-items: center;
     text-align: center;
     cursor:pointer;
+}
+
+.img-display img {
+    max-width: 100%;
+    height: auto;
 }
 
 .img-upload p, img {
@@ -48,7 +57,16 @@
 }
 
 .diary-content {
+    box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.2);
     height: 88%;
+}
+
+.diary-detail-content {
+    box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.2);
+    padding: 1.5em;
+    height: 75%;
+    font-size: 1em;
+    line-height: 1.6em;
 }
 
 .diary-content textarea {
@@ -78,6 +96,7 @@
 
 .arrow {
     width: 1em;
+    margin-left: 0.5em;
 }
 .custom-select-options {
     border: 1px solid black;
@@ -111,7 +130,7 @@
     cursor: pointer;
 }
 
-.weather .sunnybtn{
+.weather .sunnybtn, .sunny {
     margin-left: 0.5em;
     background: url('../assets/icons/9197.png') no-repeat center center;
     background-size: cover;
@@ -164,9 +183,516 @@
     font-size: 1em;
     cursor: pointer;
     text-align: center;
+    box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.2);
 }
 
 .submit-btn:hover {
     background-color: #5c5cfe;
     color: #ffffff;
+}
+
+/* diarymodal */
+.diarymodal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.diarymodal {
+    width: 40%;
+    height: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2.5em;
+    display: flex;
+    gap: 2em;
+    justify-content: space-between;
+}
+
+.diarymodal-option {
+    width: 48%; /* 옵션 사이의 균일한 너비 */
+    text-align: center;
+    padding: 4.5em;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em; /* 내부 요소 간격 균일하게 */
+}
+
+.diarymodal-option .ai-icon, .diarymodal-option .create-icon {
+    width: 4.5em;
+    height: 4.5em;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.diarymodal-option .ai-icon {
+    background-image: url('/src/assets/icons/AI_diary.png');
+}
+
+.diarymodal-option .create-icon {
+    background-image: url('/src/assets/icons/create_diary.png');
+}
+
+.diarymodal-option p {
+    margin: 0;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.diarymodal-option button {
+    margin-top: 3em;
+    padding: 0.7em 1em;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.diarymodal-option button:hover {
+    background-color: #333;
+}
+
+.modal-input {
+    padding: 0.3em;
+    margin: 1em 0 0 1em;
+    font-size: 1em;
+    width: 100%;
+    max-width: 150px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.yoyak-button, .close-button {
+    flex: 1;
+    padding: 0.3em;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+
+.yoyak-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+}
+
+.close-button {
+    background-color: #f5f5f5;
+    color: black;
+    border: 1px solid #000;
+}
+
+.close-button:hover {
+    background-color: #fff;
+}
+
+
+/* Diaryboard MyDailyboard */
+.diary-board {
+    position: relative;
+    margin: 2em auto;
+    max-width: 60%;
+    font-family: NotoSansCJKKR;
+}
+
+.diary-image, .diary-image img {
+    width: 100%;
+    height: auto;
+}
+
+.diary-image {
+    margin-bottom: 1em;
+    overflow: hidden;
+}
+
+.diary-image img {
+    object-fit: cover;
+}
+
+
+.board-title {
+    margin: 2.5em 0 2.5em 1em;
+    font-size: 1.7em;
+}
+
+.diary-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 1em; 
+    justify-content: space-between; 
+    padding: 1em;
+}
+
+.diary-entry {
+    position: relative;
+    background: #f9f9f9;
+    padding: 1.5em;
+    border: 0.01em solid #ebebeb;
+    box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1 1 calc(33.333% - 1em); 
+    box-sizing: border-box;
+    max-width: 32%; 
+}
+
+h2 {
+    margin: 0.5em 0;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.diary-count {
+    color: blue; 
+    font-weight: bold;
+    font-size: 1em;
+  }  
+
+.diary-entry p {
+    margin: 1em 0;
+    flex-grow: 1;
+    overflow: visible;
+    display: block;
+    text-overflow: initial;
+}
+
+.diary-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #888;
+    font-size: 0.9em;
+    margin-top: 0.5em;
+}
+
+.user-name {
+    font-size: 0.9em; 
+    margin-right: 0.5em; 
+    color: #333; 
+}
+
+.createdAt {
+    font-size: 0.9em;
+    color: #999; 
+}
+
+.weather-icon {
+    margin-left: auto;
+    width: 45px; 
+    height: 45px;
+    display: inline-block;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.sunny {
+    background-image: url('/src/assets/icons/9189.png');
+}
+  
+.rainy {
+    background-image: url('/src/assets/icons/9188.png');
+}
+
+.cloudy {
+    background-image: url('/src/assets/icons/9190.png');
+}
+
+.partly-cloudy {
+    background-image: url('/src/assets/icons/9191.png');
+}
+
+@media (max-width: 768px) {
+    .diary-entry {
+        flex: 1 1 calc(45% - 1em); 
+        max-width: 48%;
+    }
+}
+
+@media (max-width: 480px) {
+    .diary-entry {
+        flex: 1 1 calc(100% - 1em); 
+        max-width: 100%;
+    }
+}
+
+.summarize-button {
+    border: none;
+    background-color: transparent;
+    color: #000;
+    border: none;
+    padding: 0.4em 0.8em;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: underline;
+    z-index: 5;
+}
+
+/* 특정 날짜로 찾기 */
+.date-filter {
+    position: relative;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.date-filter-button {
+    background-color: #4A90E2;
+    color: #fff;
+    border: none;
+    padding: 0.4em 0.8em;
+    cursor: pointer;
+    font-size: 1em;
+    z-index: 5;
+}
+
+.date-picker-container {
+    position: absolute;
+    margin-top: 0.2em;
+    top: 100%; 
+    right: 0;
+    z-index: 10;
+    background: #fff;
+    box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.2);
+    border: none;
+    padding: 1em;
+}
+
+/* like */
+.diary-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 6em;
+}
+
+.like-button, .like-section {
+    position: absolute;
+    right: 2.5em;
+    width: 1.7em;
+    height: 1.7em;
+    background-image: url('/src/assets/icons/ico-subscription-b@2x_2.png');
+    background-size: cover;
+    cursor: pointer;
+}
+
+.like-button {
+    background-image: url('/src/assets/icons/ico-subscription-b@2x_2.png');
+}
+
+.like-button.liked, .like-section {
+    background-image: url('/src/assets/icons/ico-subscription-b@2x.png');
+}
+
+.like-count {
+    margin-top: 1em;
+}
+
+/* search */
+.search-sort-container {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 0.2em;
+}
+
+.search-icon {
+    width: 1.5em;
+    height: 1.5em;
+    cursor: pointer;
+}
+
+.search-input {
+    height: 0.8em;
+    padding: 0.5em;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 0.25em;
+    outline: none;
+}
+
+/* diaryboard 정렬 dropdown */
+.sort-dropdown {
+    position: absolute;
+    display: inline-block;
+    top: 2.5em;
+    right: 1.3em;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    background-color: transparent;
+    border: none;
+    font-size: 1em;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+} 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #000;
+    box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    z-index: 1;
+    min-width: 80px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 0.5em 0.6em;
+    font-size: 0.9em;
+    color: #000;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #fff;
+}
+
+.dropdown-item.active {
+    color: blue;
+    font-weight: bold;
+}
+
+/* diarydetail */
+.diary-detail-container {
+    max-width: 60%;
+    margin: auto;
+    padding: 2em;
+    font-family: 'NotoSansCJKKR';
+}
+
+.diary-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+    padding: 3em;
+  }
+
+.breadcrumb, .back-button {
+    font-size: 0.9em;
+    color: #000;
+    margin: 0;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.flex-cont {
+    display: flex;
+    gap: 1em;
+}
+
+.meta-info {
+    display: flex;
+    align-items: center;
+}
+
+.detail-author {
+    font-weight: bold;
+    color: #000;
+    margin: 0 1em 0 2em;
+}
+  
+.detail-createdAt {
+    color: #aaa;
+    margin: 0 1em 0 1em;
+}
+  
+.detail-public-status {
+     font-weight: bold;
+    color: #000;
+    margin: 0 1em 0 1em;
+}
+  
+.detail-weather-icon {
+    width: 3em;
+    height: 3em;
+    background-size: cover;
+    border-radius: 50%; 
+}
+
+.edit-delete-buttons {
+  display: flex;
+  gap: 1em;
+  margin: 2em 0 0 1.5em;
+}
+
+.edit-button, .delete-button {
+  background-color: transparent;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.diary-detail-content {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #333;
+    padding: 1.5em;
+    background-color: #fff;
+    box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.2);
+    margin-bottom: 1em;
+}
+
+.diary-footer {
+    display: flex;
+    justify-content: center;
+    padding: 0.2em 0;
+    margin-top: 1em;
+    border-top: 1px solid #f0f0f0; /* 상단에 경계선 추가 */
+    background-color: #fff;
+    box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.2);
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.detail-like-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5em; 
+    padding: 0.3em 1em;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.like-icon {
+    width: 1.7em;
+    height: 1.7em;
+    background-image: url('../assets/icons/ico-subscription-b@2x.png'); /* 좋아요 아이콘 */
+    background-size: contain;
 }
