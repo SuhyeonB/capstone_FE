@@ -484,28 +484,6 @@ h2 {
     padding-right: 6em;
 }
 
-.like-button, .like-section {
-    position: absolute;
-    right: 2.5em;
-    width: 1.7em;
-    height: 1.7em;
-    background-image: url('/src/assets/icons/ico-subscription-b@2x_2.png');
-    background-size: cover;
-    cursor: pointer;
-}
-
-.like-button {
-    background-image: url('/src/assets/icons/ico-subscription-b@2x_2.png');
-}
-
-.like-button.liked, .like-section {
-    background-image: url('/src/assets/icons/ico-subscription-b@2x.png');
-}
-
-.like-count {
-    margin-top: 1em;
-}
-
 /* search */
 .search-sort-container {
     display: flex;
@@ -691,8 +669,13 @@ h2 {
 }
 
 .like-icon {
-    width: 1.7em;
-    height: 1.7em;
-    background-image: url('../assets/icons/ico-subscription-b@2x.png'); /* 좋아요 아이콘 */
-    background-size: contain;
+    background-image: url('/src/assets/icons/ico-subscription-b_2.png'); /* 비어있는 하트 이미지 */
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background-size: cover;
+}
+  
+.like-icon.liked {
+    background-image: url('/src/assets/icons/ico-subscription-b.png'); /* 채워진 하트 이미지 */
 }
