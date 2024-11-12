@@ -679,3 +679,93 @@ h2 {
 .like-icon.liked {
     background-image: url('/src/assets/icons/ico-subscription-b.png'); /* 채워진 하트 이미지 */
 }
+
+/* Modal background styling */
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+/* Modal content container */
+.modal-content {
+    background-color: #fff;
+    width: 80%;
+    max-width: 900px;
+    padding: 2em;
+    display: flex;
+    gap: 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* Left and right section layout */
+.left-section, .right-section {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+/* Section title styling */
+.section-title {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5em;
+}
+
+/* Content paragraph styling */
+.left-section p, .right-section p {
+    background-color: #f9f9f9;
+    padding: 1em;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+/* Button container styling */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1em;
+}
+
+/* Register and close button styling */
+.register-button, .close-button {
+    padding: 0.7em 2em;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    flex: 1; /* 버튼 너비를 균등하게 설정 */
+    border-radius: 5px;
+    margin: 0 0.5em;
+    text-align: center;
+}
+
+.register-button {
+    background-color: #5c5cfe;
+    color: #fff;
+}
+
+.close-button {
+    background-color: #ccc;
+    color: #333;
+}
+
+.close-button:hover {
+    background-color: #b3b3b3;
+}
+
+.register-button:hover {
+    background-color: #4b4bdb;
+}
