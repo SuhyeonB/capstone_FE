@@ -278,31 +278,6 @@
     border-radius: 4px;
 }
 
-.yoyak-button, .close-button {
-    flex: 1;
-    padding: 0.3em;
-    font-size: 1em;
-    border-radius: 4px;
-    cursor: pointer;
-    }
-
-.yoyak-button {
-    background-color: #000;
-    color: #fff;
-    border: none;
-}
-
-.close-button {
-    background-color: #f5f5f5;
-    color: black;
-    border: 1px solid #000;
-}
-
-.close-button:hover {
-    background-color: #fff;
-}
-
-
 /* Diaryboard MyDailyboard */
 .diary-board {
     position: relative;
@@ -582,7 +557,7 @@ h2 {
     margin: 0;
 }
 
-.back-button {
+.back-button, .yoak, .close-summary  {
     background: none;
     border: none;
     cursor: pointer;
@@ -680,7 +655,49 @@ h2 {
     background-image: url('/src/assets/icons/ico-subscription-b.png'); /* 채워진 하트 이미지 */
 }
 
-/* Modal background styling */
+.yoak {
+    background-color: #4A90E2;
+    padding: 0.3em;
+    font-size: 1.1em;
+    color: #fff;
+    margin-bottom: 1em;
+    font-weight: bolder;
+    margin-left: 68em;
+}
+
+.summary-content {
+    background-color: #fff;
+    padding: 0.2em;
+    box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.2);
+    margin-bottom: 1em;
+}
+
+.summary-title {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 1em 1em 0 1em;
+    color: #000;
+    border-bottom: 1px solid #000;
+    padding-bottom: 0.5em;
+}
+
+.summary-content  p {
+    background-color: #f9f9f9;
+    margin: 1em 1em 0 1em;
+    padding: 0.8em;
+}
+
+.close-summary {
+    font-size: 0.9em;
+    background-color: #000;
+    color: #fff;
+    padding: 0.4em;
+    font-weight: bolder;
+    margin: 1em
+}
+
+
+/* 일기작성 완료 모달 */
 .modal-background {
     position: fixed;
     top: 0;
@@ -694,61 +711,76 @@ h2 {
     z-index: 10;
 }
 
-/* Modal content container */
 .modal-content {
     background-color: #fff;
     width: 80%;
     max-width: 900px;
     padding: 2em;
     display: flex;
-    gap: 1em;
+    flex-direction: column;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+    position: relative; 
+    gap: 1em;
 }
 
-/* Left and right section layout */
+.content-section {
+    display: flex; 
+    gap: 1em;
+    flex-grow: 1;
+}
+
 .left-section, .right-section {
-    width: 48%;
+    display: flex;
+    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
-/* Section title styling */
+
 .section-title {
     font-weight: bold;
     font-size: 1.2em;
-    color: #333;
-    border-bottom: 1px solid #ccc;
+    color: #000;
+    border-bottom: 1px solid #000;
     padding-bottom: 0.5em;
 }
 
-/* Content paragraph styling */
+
 .left-section p, .right-section p {
     background-color: #f9f9f9;
-    padding: 1em;
-    max-height: 100px;
+    padding: 1.5em;
+    max-height: 200px;
     overflow-y: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
-/* Button container styling */
-.button-container {
-    display: flex;
+.button-section {
+    display: contents;
     justify-content: space-between;
     width: 100%;
-    margin-top: 1em;
+    height: 100%;
 }
 
-/* Register and close button styling */
+
+.register-button, .close-buttonm {
+    padding: 0.7em 2em;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+}
+
 .register-button, .close-button {
     padding: 0.7em 2em;
     font-size: 1em;
     font-weight: bold;
     border: none;
     cursor: pointer;
-    flex: 1; /* 버튼 너비를 균등하게 설정 */
-    border-radius: 5px;
-    margin: 0 0.5em;
+    flex: 1;
     text-align: center;
 }
 

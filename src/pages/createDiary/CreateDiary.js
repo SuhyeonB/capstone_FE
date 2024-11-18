@@ -43,7 +43,7 @@ const CreateDiary = () => {
         return "맞춤법 오류가 없습니다.";
     };
 
-    /* 주석 처리된 코드 (삭제하지 않음)
+    /* 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -200,16 +200,30 @@ const CreateDiary = () => {
             {resultModal && (
                 <div className="modal-background">
                     <div className="modal-content">
-                        <div className="left-section">
+                        {/* 작성된 일기와 번역/어시스턴트를 가로로 배치 */}
+                        <div className="content-section">
+                            {/* 작성된 일기 섹션 */}
+                            <div className="left-section">
                                 <div className="section-title">작성된 일기</div>
-                                <p>{content}</p>
-                                <button className="register-button" onClick={handleRegister}>일기 등록하기</button>
+                                <p className="diarycontent">{content}</p>
                             </div>
-                        <div className="right-section">
-                            <div className="section-title">일기 번역</div>
-                            <p className="translated-content">{translatedContent}</p>
-                            <div className="section-title">어시스턴트</div>
-                            <p className="assistant-feedback">{assistantFeedback}</p>
+                            {/* 번역과 어시스턴트 섹션 */}
+                            <div className="right-section">
+                                {/* 일기 번역 */}
+                                <div>
+                                    <div className="section-title">일기 번역</div>
+                                    <p className="translated-content">{translatedContent}</p>
+                                </div>
+                                {/* 어시스턴트 */}
+                                <div className="assistant">
+                                    <div className="section-title">어시스턴트</div>
+                                    <p className="assistant-feedback">{assistantFeedback}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {/* 버튼 섹션 */}
+                        <div className="button-section">
+                            <button className="register-button" onClick={handleRegister}>일기 등록하기</button>
                             <button className="close-button" onClick={() => setResultModal(false)}>닫기</button>
                         </div>
                     </div>
