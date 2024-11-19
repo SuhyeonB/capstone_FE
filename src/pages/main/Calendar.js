@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -61,16 +62,40 @@ const Calendar = () => {
     return days;
   };
 
-  const prevMonth = () => {
-    setCurrentDate(
-      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
-    );
+  const prevMonth = async () => {
+    const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+    setCurrentDate(newDate);
+
+    // 연도와 월을 파라미터로 백엔드에 전달
+    try {
+      await axios.get('/api/calendar', {
+        params: {
+          year: newDate.getFullYear(),
+          month: newDate.getMonth() + 1,
+        },
+      });
+      console.log('이전 달 데이터 요청 성공');
+    } catch (error) {
+      console.error('이전 달 데이터 요청 실패:', error);
+    }
   };
 
-  const nextMonth = () => {
-    setCurrentDate(
-      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
-    );
+  const nextMonth = async () => {
+    const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+    setCurrentDate(newDate);
+
+    // 연도와 월을 파라미터로 백엔드에 전달
+    try {
+      await axios.get('/api/calendar', {
+        params: {
+          year: newDate.getFullYear(),
+          month: newDate.getMonth() + 1,
+        },
+      });
+      console.log('다음 달 데이터 요청 성공');
+    } catch (error) {
+      console.error('다음 달 데이터 요청 실패:', error);
+    }
   };
 
   const handleAttendance = () => {
