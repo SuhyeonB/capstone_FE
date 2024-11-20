@@ -3,6 +3,8 @@ const initialState = {
   isLoggedIn: false, // 로그인 상태를 나타내는 변수. 기본값은 false (로그인되지 않음)
   userId: null,      // 로그인된 사용자의 ID. 기본값은 null
   username: null,    // 로그인된 사용자의 이름. 기본값은 null
+  accessToken: null,
+  refreshToken: null,
 };
 
 // userReducer 함수 정의. state와 action을 받아서 새로운 상태를 반환
@@ -16,6 +18,8 @@ const userReducer = (state = initialState, action) => {
         isLoggedIn: true,           // 로그인 상태를 true로 설정
         userId: action.payload.userId, // 액션의 payload에서 userId 값을 가져와 설정
         username: action.payload.username, // 액션의 payload에서 username 값을 가져와 설정
+        accessToken: action.payload.accessToken,
+        refreshToken: action.payload.refreshToken,
       };
     // 'LOGOUT_USER' 액션 타입일 때 (사용자가 로그아웃할 때)
     case 'LOGOUT_USER':

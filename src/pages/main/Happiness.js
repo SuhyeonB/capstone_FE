@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 import dummy_happy from '../../dummy/dummy_happy';
+import texts from '../../dummy/texts';
 
 const Happiness = () => {
   const initialHappinessData = dummy_happy.map(data => data.score);
@@ -27,19 +28,24 @@ const Happiness = () => {
   }, [happinessData]);
 
   useEffect(() => {
-    let newMessage = '';
+    let range = 0;
     if (average >= 8) {
-      newMessage = '이번 달은 정말 행복한 달이었어요! 계속 이렇게 유지해보세요!';
+      range = 8;
     } else if (average >= 6) {
-      newMessage = '행복한 순간들이 많았어요! 조금만 더 노력하면 더 좋아질 거예요!';
+      range = 6;
     } else if (average >= 4) {
-      newMessage = '평균적인 행복지수입니다. 더 많은 즐거운 일을 찾아보세요!';
+      range = 4;
     } else if (average >= 2) {
-      newMessage = '조금 더 노력해보세요. 행복은 작은 변화에서 시작됩니다!';
+      range = 2;
     } else {
-      newMessage = '이번 달은 많이 힘들었던 것 같아요. 작은 행복부터 찾아보세요.';
+      range = 0;
     }
-    setMessage(newMessage);
+
+    const messages = texts[range] || [];
+    const randomMessage = messages.length > 0
+      ? messages[Math.floor(Math.random() * messages.length)]
+      : '문구를 찾을 수 없습니다.';
+    setMessage(randomMessage);
   }, [average]);
 
   const handleInputChange = (e) => {

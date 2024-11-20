@@ -1,6 +1,6 @@
 // userid와 username을 payload로 전달하여 redux 상태에 저장
 // reducer에서 payload 정보를 참조하여 상태를 업데이트
-export const setUser = (userId, username) => ({
+export const setUser = (userId, username, accessToken, refreshToken) => ({
   type: 'SET_USER',
   payload: { userId, username },
 });

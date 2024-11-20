@@ -27,7 +27,7 @@ function Signin() {
       localStorage.setItem('refreshToken', refreshToken);
 
       // 유저 정보를 리덕스에 저장
-      dispatch(setUser(userId, username));
+      dispatch(setUser(userId, username, accessToken, refreshToken));
       
       navigate('../');
     } catch (error) {
@@ -85,10 +85,11 @@ function Signin() {
           </button>
           <div className="signin-options">
             <label>
-              <input type="checkbox" /> 자동 로그인
+              <Link to='/findpassword' className='link-button'>비밀번호찾기</Link>
             </label>
             <Link to='/signup' className="link-button">회원가입</Link>
           </div>
+          <hr style={{marginBottom: "2em"}}/>
           <button 
             type="button" 
             className="kakao-button" 

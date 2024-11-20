@@ -7,15 +7,16 @@ import Footer from "./components/Footer";
 
 import Signin from "./pages/signin";
 import Signup from "./pages/signup";
+import FindPassword from "./pages/FindPassword";
 
 import Mypage from "./pages/Mypage";
 
-import CreateDiary from "./pages/createDiary/CreateDiary";
+import CreateDiary from "./pages/diary/CreateDiary";
 
-import Diaryboard from "./pages/createDiary/Diaryboard";
-import MyDiaryboard from "./pages/createDiary/MyDiaryboard";
+import Diaryboard from "./pages/diary/Diaryboard";
+import MyDiaryboard from "./pages/diary/MyDiaryboard";
 
-import DiaryDetail from "./pages/createDiary/DiaryDetail";
+import DiaryDetail from "./pages/diary/DiaryDetail";
 
 import ScrollToTop from "./utils/ScrollTolTop";
 
@@ -29,7 +30,8 @@ function App() {
             <Route path='/' element={<Main/>}/>
             <Route path='/signin' element={<Signin/>}/>
             <Route path='/signup' element={<Signup/>}/>
-
+            <Route path='/findpassword' element={<FindPassword/>}/>
+            
             {/* nav */}
             <Route path='/writediary' element={<CreateDiary/>} />
 

@@ -49,10 +49,13 @@
   cursor: pointer;
   text-decoration: none;
 }
+.link-button:focus, .link-button:hover {
+  color: #999;
+}
 
 .kakao-button, .google-button {
   width: 100%;
-  height: 50px;
+  height: 3.5em;
   justify-content: center;
   background-color: transparent;
   background-size: contain;
@@ -63,12 +66,14 @@
 }
 
 .kakao-button {
+  background-color: rgb(254, 229, 0);
   background-image: url('../assets/icons/kakao_login_large_narrow.png');
   background-size: contain;
   margin: 1em 0 1em 0;
 }
 
 .google-button {
+  background-color: #fff;
   background-image: url('../assets/icons/web_light_sq_SI@4x.png');
 }
 

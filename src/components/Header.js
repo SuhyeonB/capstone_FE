@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import "../styles/component_css/Main.css";
+import { logoutUser } from '../store/actions/userActions';
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    dispatch(logoutUser);
     alert("로그아웃 되었습니다.");
+
+    navigate('/');
   };
 
   return (
