@@ -17,6 +17,7 @@ import Diaryboard from "./pages/diary/Diaryboard";
 import MyDiaryboard from "./pages/diary/MyDiaryboard";
 
 import DiaryDetail from "./pages/diary/DiaryDetail";
+import MyDiaryDetail from "./pages/diary/MyDiaryDetail";
 
 import ScrollToTop from "./utils/ScrollTolTop";
 
@@ -38,7 +39,8 @@ function App() {
             <Route path='/board' element={<Diaryboard/>} />
             <Route path='/diary' element={<MyDiaryboard/>} />
 
-            <Route path="/diary/:postId" element={<DiaryDetail />} />
+            <Route path="/diary/:postId" element={<MyDiaryDetail />} />
+            <Route path="/board/:postId" element={<DiaryDetail />} />
             
             <Route path='/mypage' element={<Mypage/>} />
           </Routes>

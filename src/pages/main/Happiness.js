@@ -3,6 +3,7 @@ import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 import dummy_happy from '../../dummy/dummy_happy';
 import texts from '../../dummy/texts';
+import axios from 'axios';
 
 const Happiness = () => {
   const initialHappinessData = dummy_happy.map(data => data.score);
@@ -52,12 +53,24 @@ const Happiness = () => {
     setInputValue(parseFloat(e.target.value));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newHappinessData = [...happinessData];
     newHappinessData[currentDay - 1] = inputValue;
     setHappinessData(newHappinessData);
     setIsModalOpen(false);
+
+    // 행복지수를 파라미터로 백엔드에 전달
+    try {
+      await axios.get('/api/happiness', {
+        params: {
+          score: inputValue, // 행복지수 점수
+        },
+      });
+      console.log('행복지수 등록 성공');
+    } catch (error) {
+      console.error('행복지수 등록 실패:', error);
+    }
   };
 
   const chartData = {
@@ -112,7 +125,7 @@ const Happiness = () => {
       </div>
 
       <button className="register-btn" onClick={() => setIsModalOpen(true)}>
-      <strong>행복지수 등록</strong>
+        <strong>행복지수 등록</strong>
       </button>
 
       {isModalOpen && (
