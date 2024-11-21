@@ -10,8 +10,8 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    dispatch(logoutUser);
-    alert("로그아웃 되었습니다.");
+    dispatch(logoutUser());
+    localStorage.clear();
 
     navigate('/');
   };

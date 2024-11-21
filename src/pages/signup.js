@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/Sign.css'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+    const navigate = useNavigate();
     const [pwd, setPwd] = useState('');
     const [usablePwd, setUsablePwd] = useState(true);
     const [repwd, setRepwd] = useState('');
@@ -21,9 +23,26 @@ const Signup = () => {
     },[pwd, repwd])
 
 
-    const sendEmail = () => {
+    const sendEmail = async () => {
         setTimerShow(true);
-    }
+
+        try {
+            const response = await axios.post('http://localhost:8080/api/emails/send-email', {
+                email: email,
+            });
+
+            if (response.data === 'verification code sent') {
+                console.log('Success:', response.data);
+                alert('인증코드가 전송되었습니다.');
+            } else {
+                console.log('Failed: ', response.data);
+                alert("이미 가입된 이메일입니다."); // "Email already exists"
+            } 
+        } catch (error) {
+            console.error('Error sending email:', error);
+            alert("이메일 전송에 실패했습니다.");
+        }
+    };
 
     // 타이머 효과
     useEffect(() => {
@@ -48,19 +67,33 @@ const Signup = () => {
         return `${minutes}:${remainingSeconds}`;
     };
 
-    const checkVerify = () => {
-        if (verifyCode === '1234') {
-            setVerified(true);
-            alert("이메일 인증에 성공했습니다.");
-            setTimerShow(false);
-        } else {
-            alert("인증 코드가 올바르지 않습니다.");
-        }
+    const checkVerify = async() => {
+        alert('인증되었습니다.');
+        setVerified(true);
+        /*
+        try {
+            const response = await axios.post('http://localhost:8080/api/emails/verify-code', {
+                email: email,
+                code: verifyCode
+            });
+
+            if (response.data === 'success') {
+                alert('인증되었습니다.');
+                setVerified(true);
+            } else {
+                alert("잘못된 코드입니다."); 
+            } 
+        } catch (error) {
+            console.error(error);
+        } */
     }
 
     const signup = async (e) => {
         e.preventDefault();
         if (verified) {
+            alert("회원가입되었습니다.")
+            navigate('/signin');
+            /*
             try {
                 await axios.post('http://localhost:8080/api/users', {
                     name: name,
@@ -70,9 +103,9 @@ const Signup = () => {
                 // console.log('User signed up successfully: ', response.data);
             } catch (error) {
                 console.error('Error during signup:', error.response?.data || error.message);
-            }
+            }*/
         } else {
-            alert("이메일 인증을 완료해 주세요.");
+            alert("회원가입에 실패했습니다.");
         }
     }
 

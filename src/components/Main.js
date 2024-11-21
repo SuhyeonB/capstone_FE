@@ -6,8 +6,7 @@ import Happiness from '../pages/main/Happiness';
 import Weather from '../pages/main/Weather';
 
 const Main = () => {
-    //const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-    const isLoggedIn = true;
+    const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
     const username = useSelector((state) => state.user.username);
 
     return (

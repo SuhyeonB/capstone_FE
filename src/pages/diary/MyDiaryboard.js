@@ -37,6 +37,11 @@ const MyDiaryboard = () => {
     }
   };
 
+  const truncateContent = (content, maxLength = 200) => {
+    return content.length > maxLength ? content.slice(0, maxLength) + "..." : content;
+  };
+
+
   return (
     <div className="diary-board">
       <h1 className='board-title'>
@@ -71,7 +76,7 @@ const MyDiaryboard = () => {
               <img src={diary.imageUrl} alt={diary.title} className="diary-image" />
             )}
             <h2>{diary.title}</h2>
-            <p>{diary.content}</p>
+            <p>{truncateContent(diary.content)}</p> {/* 내용 자르기 적용 */}
             <div className="diary-meta">
               <span className='createdAt'>{diary.createdAt}</span>
               <span className={`weather-icon ${diary.weather}`}></span>

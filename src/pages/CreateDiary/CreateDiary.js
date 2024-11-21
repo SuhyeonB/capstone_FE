@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/diary.css';
-import api from '../../api/interceptor';
+//import api from '../../api/interceptor';
 import image_upload from '../../assets/icons/image-upload.png';
 import arrowUp from '../../assets/icons/arrow_up.gif';
 import arrowDwn from '../../assets/icons/arrow_dwn.gif';
+import dummy_post from '../../dummy/dummy_post';
 
 const CreateDiary = () => {
+    const today = new Date();
+    const MAX_CONTENT_LENGTH = 1000;
+    const MAX_TITLE_LENGTH = 50;
+
     const [typo, setTypo] = useState(0); // 글자 수 상태
     const [title, setTitle] = useState(''); // 제목 상태
     const [content, setContent] = useState(''); // 내용 상태
@@ -17,6 +22,26 @@ const CreateDiary = () => {
     const [translatedContent, setTranslatedContent] = useState(''); // 번역된 내용
     const [assistantFeedback, setAssistantFeedback] = useState(''); // 어시스턴트 피드백
 
+    const [imagePreview, setImagePreview] = useState(null); // 미리보기 이미지
+    const [imageFile, setImageFile] = useState(null); // 업로드된 이미지 파일
+
+    const handleTitleChange = (e) => {
+        const inputTitle = e.target.value;
+        if (inputTitle.length <= MAX_TITLE_LENGTH) {
+            setTitle(inputTitle);
+        }
+    };
+
+    // Handle Content Change (with length restriction)
+    const handleContentChange = (e) => {
+        const inputContent = e.target.value;
+        if (inputContent.length <= MAX_CONTENT_LENGTH) {
+            setContent(inputContent);
+        } else {
+            alert("더 이상 작성하실 수 없습니다.")
+        }
+    };
+    
     // 공개 여부를 선택하는 함수
     const handleSelect = (value) => {
         setPublic(value);
@@ -27,6 +52,18 @@ const CreateDiary = () => {
     useEffect(() => {
         setTypo(content.length);
     }, [content]);
+
+    const handleImageUpload = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setImagePreview(reader.result); // Display the preview
+            };
+            reader.readAsDataURL(file);
+            setImageFile(file); // Save the uploaded file
+        }
+    };
 
     // 예시 번역 함수
     const translateContent = (text) => {
@@ -65,23 +102,19 @@ const CreateDiary = () => {
     // 제출 버튼 클릭 시 실행되는 함수
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const response = await api.post('/api/diary', {
-                title,
-                content,
-                weather,
-                visibility: ispublic === 'pub' ? '전체공개' : '비공개'
-            });
-            alert("일기가 성공적으로 등록되었습니다.");
-            console.log("서버 응답:", response.data);
-        } catch (error) {
-            console.error("Failed to create diary:", error);
-            alert("일기 등록 중 오류가 발생했습니다.");
-        }
 
         // 유저가 작성한 내용을 바탕으로 번역 및 맞춤법 검사 수행
-        const translated = translateContent(content);
-        const feedback = checkSpelling(content);
+        const translated = `
+        오늘은 보라카이에서 평화로운 하루를 보냈다. 관광객이 적은 시기에 방문해서 특히 조용했고, 섬의 매력을 여유롭게 즐길 수 있었다. 부모님이 마사지를 받으러 가신 동안 나는 산책하며 주변을 탐험하기로 했다.
+
+        `;
+        const feedback = `
+1. there day
+there는 장소를 나타낼 때 사용하는 단어인데, 여기서는 그들의라는 소유격을 나타내야 해서 their를 써야 합니다.
+
+수정 방법: friendly people going about their day로 고치는 것이 맞습니다.
+`;
+
 
         // 번역 및 피드백 내용을 상태에 저장하여 모달에 표시
         setTranslatedContent(translated);
@@ -91,7 +124,30 @@ const CreateDiary = () => {
 
     // "일기 등록하기" 버튼 클릭 시 실행되는 함수
     const handleRegister = () => {
+        if (!title || !content) {
+            alert("제목과 내용을 모두 입력해주세요!");
+            return;
+        }
+
+        const newDiary = {
+            post_id: dummy_post.length + 1,
+            title: title,
+            content: content,
+            createdAt: today.toISOString().split('T')[0],
+            public: ispublic === "비공개" ? 0 : 1,
+            user_id: 101,
+            weather: weather,
+            imageUrl: imageFile ? URL.createObjectURL(imageFile) : null, // 업로드된 이미지를 URL로 변환
+            likeCount: 0, // Default
+        };
+        dummy_post.push(newDiary);
         alert("일기가 성공적으로 등록되었습니다!");
+
+        // Reset form fields
+        setTitle('');
+        setContent('');
+        setImagePreview(null);
+        setImageFile(null);
         setResultModal(false);
     };
 
@@ -133,15 +189,31 @@ const CreateDiary = () => {
                     {/* 이미지 업로드 */}
                     <div className="height-6 img-upload">
                         <label htmlFor="upload">
-                            <img src={image_upload} alt="image_upload" className='font-gray' />
-                            <p className='font-gray'>이곳을 클릭하여 이미지를 업로드하세요.<br />지원 형식(jpg, jpeg, png)</p>
+                            {imagePreview ? (
+                                <img src={imagePreview} alt="Preview" className="image-preview"
+                                style={{width:"100%"}} />
+                            ) : (
+                                <>
+                                    <img src={image_upload} alt="image_upload" className="font-gray" />
+                                    <p className="font-gray">
+                                        이곳을 클릭하여 이미지를 업로드하세요.<br />
+                                        지원 형식(jpg, jpeg, png)
+                                    </p>
+                                </>
+                            )}
                         </label>
-                        <input type="file" id="upload" accept="image/*" className='invisible' />
+                        <input
+                            type="file"
+                            id="upload"
+                            accept="image/*"
+                            className="invisible"
+                            onChange={handleImageUpload}
+                        />
                     </div>
                     {/* 제목 입력 */}
                     <div className="diary-title diary-element">
                         <input
-                            type="text" value={title} onChange={(e) => setTitle(e.target.value)}
+                            type="text" value={title} onChange={handleTitleChange}
                             placeholder="제목을 입력하세요."
                         />
                     </div>
@@ -189,7 +261,7 @@ const CreateDiary = () => {
                 {/* 내용 입력 */}
                 <div className='cont-2'>
                     <div className='cont-box diary-content'>
-                        <textarea value={content} onChange={(e) => setContent(e.target.value)}
+                        <textarea value={content} onChange={handleContentChange}
                         placeholder="내용을 입력하세요."/>
                     </div>
                     {/* 제출 버튼 */}

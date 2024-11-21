@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Sign.css';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+//import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/actions/userActions';
 
@@ -10,7 +10,7 @@ function Signin() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+/*
   const handleLoginClick = async () => {
     if (!email) { alert("아이디를 입력하세요."); return; }
     if (!password) { alert("비밀번호를 입력하세요."); return; }
@@ -42,6 +42,23 @@ function Signin() {
         alert('로그인 중 오류:', message);
       }
     }
+  };
+*/
+  const handleLoginClick = async () => {
+    if (!email) { alert("아이디를 입력하세요."); return; }
+    if (!password) { alert("비밀번호를 입력하세요."); return; }
+
+    const userId = 101;
+    const username="홍길동";
+    const accessToken="temp43access343o&^token";
+    const refreshToken="temp43254refresyafj;si";
+
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+
+      dispatch(setUser(userId, username, accessToken, refreshToken));
+      
+      navigate('../');
   };
 
   // 카카오 로그인 핸들러

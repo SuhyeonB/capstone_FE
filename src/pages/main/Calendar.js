@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import dummy_attend from '../../dummy/dummy_attend';
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [attendanceDays, setAttendanceDays] = useState([]);
+  const [attendanceDays, setAttendanceDays] = useState(dummy_attend);
   const today = new Date(); // 오늘 날짜로 고정
 
   const renderCalendar = () => {
@@ -33,9 +34,14 @@ const Calendar = () => {
         month === today.getMonth() &&
         year === today.getFullYear();
 
-      const isAttendance = attendanceDays.some(
-        (day) => day.year === year && day.month === month && day.date === i
-      );
+      const isAttendance = attendanceDays.some((day) => {
+        const attendanceDate = new Date(day.createdAt);
+        return (
+          attendanceDate.getFullYear() === year &&
+          attendanceDate.getMonth() === month &&
+          attendanceDate.getDate() === i
+        );
+      });
 
       days.push(
         <div
@@ -103,22 +109,29 @@ const Calendar = () => {
     const currentMonth = today.getMonth();
     const currentDate = today.getDate();
 
-    const attendanceExists = attendanceDays.some(
-      (day) =>
-        day.year === currentYear &&
-        day.month === currentMonth &&
-        day.date === currentDate
-    );
+    const attendanceExists = attendanceDays.some((day) => {
+      const attendanceDate = new Date(day.createdAt);
+      return (
+        attendanceDate.getFullYear() === currentYear &&
+        attendanceDate.getMonth() === currentMonth &&
+        attendanceDate.getDate() === currentDate
+      );
+    });
 
     if (attendanceExists) {
       alert('이미 오늘 출석체크를 완료했습니다!');
       return;
     }
 
-    setAttendanceDays([
-      ...attendanceDays,
-      { year: currentYear, month: currentMonth, date: currentDate },
-    ]);
+    const newAttendance = {
+      attd_id: dummy_attend.length + 1, 
+      user_id: 101,
+      createdAt: today.toISOString().split('T')[0], 
+  };
+
+  dummy_attend.push(newAttendance); 
+
+    setAttendanceDays([...attendanceDays, newAttendance]);
   };
 
   return (
@@ -143,7 +156,7 @@ const Calendar = () => {
           </div>
           <div className="calendar-box">
             <div>
-              <span className="dot diary"></span>일기 작성됨
+              {/*<span className="dot diary"></span>일기 작성됨*/}
             </div>
             <div>
               <span className="dot attendance"></span>출석함

@@ -2,7 +2,7 @@
 // reducer에서 payload 정보를 참조하여 상태를 업데이트
 export const setUser = (userId, username, accessToken, refreshToken) => ({
   type: 'SET_USER',
-  payload: { userId, username },
+  payload: { userId, username, accessToken, refreshToken },
 });
 
 // 유저가 로그아웃할 시에 사용자 정보 초기상태로 돌아감

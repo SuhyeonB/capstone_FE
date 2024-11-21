@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const FindPassword = () => {
+const ResetPassword = () => {
     const [email, setEmail] = useState('');
     return (
         <div className="signup-container">
@@ -22,4 +22,4 @@ const FindPassword = () => {
     );
 };
 
-export default FindPassword;
+export default ResetPassword;

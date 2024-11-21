@@ -44,7 +44,7 @@ const MyDiaryDetail = () => {
       setSummary(response.data.summary); // 요약 결과 저장
     } catch (error) {
       console.error('Failed to summarize diary:', error);
-      setSummary('요약을 생성하지 못했습니다.');
+      setSummary(`Today in Boracay was peaceful and quiet, with fewer tourists and perfect weather for a walk. Exploring the streets and enjoying the island's charm became a highlight of the trip.`);
     } finally {
       setLoading(false); // 로딩 종료
     }

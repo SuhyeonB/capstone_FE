@@ -1,0 +1,41 @@
+const dummy_attend = [
+
+    { attd_id: 1, user_id: 101, createdAt: '2024-09-01' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-09-02' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-09-03' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-09-06' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-09-08' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-09-11' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-09-13' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-09-14' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-09-16' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-09-18' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-09-22' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-09-23' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-09-26' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-09-27' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-09-28' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-10-01' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-10-03' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-10-04' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-10-05' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-10-06' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-10-09' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-10-11' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-10-12' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-10-20' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-10-23' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-10-25' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-10-27' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-10-30' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-11-08' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-11-11' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-11-13' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-11-17' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-11-18' },
+    { attd_id: 1, user_id: 101, createdAt: '2024-11-19' },
+    
+  ];
+  
+  export default dummy_attend;
+  

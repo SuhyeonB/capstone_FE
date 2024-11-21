@@ -6,7 +6,9 @@ const dummy_post = [
     createdAt: "2024-10-10",
     public: 1,
     user_id: 101, // 홍길동
-    weather: "sunny"
+    weather: "sunny",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 2,
@@ -15,7 +17,9 @@ const dummy_post = [
     createdAt: "2024-10-09",
     public: 1,
     user_id: 102, // 최승미
-    weather: "rainy"
+    weather: "rainy",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 3,
@@ -24,7 +28,9 @@ const dummy_post = [
     createdAt: "2024-10-08",
     public: 0,
     user_id: 103, // 봉수현
-    weather: "cloudy"
+    weather: "cloudy",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 4,
@@ -33,7 +39,9 @@ const dummy_post = [
     createdAt: "2024-10-07",
     public: 1,
     user_id: 104, // 배해리
-    weather: "partly cloudy"
+    weather: "partly cloudy",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 5,
@@ -42,7 +50,9 @@ const dummy_post = [
     createdAt: "2024-10-06",
     public: 0,
     user_id: 105, // 대지니
-    weather: "sunny"
+    weather: "sunny",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 6,
@@ -51,7 +61,9 @@ const dummy_post = [
     createdAt: "2024-10-05",
     public: 1,
     user_id: 101, // 홍길동
-    weather: "sunny"
+    weather: "sunny",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 7,
@@ -60,7 +72,9 @@ const dummy_post = [
     createdAt: "2024-10-04",
     public: 1,
     user_id: 102, // 최승미
-    weather: "cloudy"
+    weather: "cloudy",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 8,
@@ -69,7 +83,9 @@ const dummy_post = [
     createdAt: "2024-10-03",
     public: 1,
     user_id: 103, // 봉수현
-    weather: "rainy"
+    weather: "rainy",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 9,
@@ -78,7 +94,9 @@ const dummy_post = [
     createdAt: "2024-10-02",
     public: 1,
     user_id: 104, // 배해리
-    weather: "sunny"
+    weather: "sunny",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 10,
@@ -87,7 +105,9 @@ const dummy_post = [
     createdAt: "2024-10-01",
     public: 0,
     user_id: 105, // 대지니
-    weather: "cloudy"
+    weather: "cloudy",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 11,
@@ -96,7 +116,8 @@ const dummy_post = [
     createdAt: "2024-09-30",
     public: 1,
     user_id: 101, // 홍길동
-    weather: "partly cloudy"
+    weather: "partly cloudy",
+    imageUrl:null,
   },
   {
     post_id: 12,
@@ -105,7 +126,9 @@ const dummy_post = [
     createdAt: "2024-09-29",
     public: 1,
     user_id: 102, // 최승미
-    weather: "sunny"
+    weather: "sunny",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 13,
@@ -114,7 +137,9 @@ const dummy_post = [
     createdAt: "2024-09-28",
     public: 0,
     user_id: 103, // 봉수현
-    weather: "cloudy"
+    weather: "cloudy",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 14,
@@ -123,7 +148,9 @@ const dummy_post = [
     createdAt: "2024-09-27",
     public: 0,
     user_id: 104, // 배해리
-    weather: "rainy"
+    weather: "rainy",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 15,
@@ -132,7 +159,9 @@ const dummy_post = [
     createdAt: "2024-09-26",
     public: 1,
     user_id: 105, // 대지니
-    weather: "sunny"
+    weather: "sunny",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 16,
@@ -141,7 +170,9 @@ const dummy_post = [
     createdAt: "2024-09-25",
     public: 0,
     user_id: 101, // 홍길동
-    weather: "partly cloudy"
+    weather: "partly cloudy",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 17,
@@ -150,7 +181,9 @@ const dummy_post = [
     createdAt: "2024-09-24",
     public: 1,
     user_id: 102, // 최승미
-    weather: "cloudy"
+    weather: "cloudy",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 18,
@@ -159,7 +192,9 @@ const dummy_post = [
     createdAt: "2024-09-23",
     public: 1,
     user_id: 103, // 봉수현
-    weather: "sunny"
+    weather: "sunny",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 19,
@@ -168,7 +203,9 @@ const dummy_post = [
     createdAt: "2024-09-22",
     public: 1,
     user_id: 104, // 배해리
-    weather: "partly cloudy"
+    weather: "partly cloudy",
+    imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 20,
@@ -177,7 +214,9 @@ const dummy_post = [
     createdAt: "2024-09-21",
     public: 0,
     user_id: 105, // 대지니
-    weather: "rainy"
+    weather: "rainy",
+    imageUrl:null,
+    likeCount: 0
   }
 ];
 
