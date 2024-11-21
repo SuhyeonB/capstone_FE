@@ -355,7 +355,7 @@ h2 {
     align-items: center;
     color: #888;
     font-size: 0.9em;
-    margin-top: 0.5em;
+    margin-top: 2em;
 }
 
 .user-name {
@@ -600,7 +600,7 @@ h2 {
 .edit-delete-buttons {
   display: flex;
   gap: 1em;
-  margin: 2em 0 0 1.5em;
+  margin: 1em 0 0 1.5em;
 }
 
 .edit-button, .delete-button {
@@ -799,4 +799,92 @@ h2 {
 
 .register-button:hover {
     background-color: #4b4bdb;
-}  
+}
+
+
+.helper-button {
+    position: relative;
+    top: 200px;
+    width: 4em; 
+    height: 4em;
+    background-image: url('/src/assets/icons/trans_icon.png'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    border: none; 
+    border-radius: 50%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer; 
+    z-index: 1; 
+    transition: transform 0.2s ease-in-out;
+}
+
+.helper-button:hover {
+    transform: scale(1.1);
+}
+
+/* 게시물 좋아요 나타내기 */
+.like-container {
+    position: absolute;
+    margin: 0.3em 2em;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.like-count {
+    font-size: 0.9em;
+    color: #333;
+}
+
+.yoakmodal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.yoakmodal-content {
+  background: white; 
+  padding: 20px;
+  max-width: 600px;
+  width: 90%; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+  text-align: center; 
+  position: relative; 
+}
+
+.yoaksummary-title {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #000;
+  padding-bottom: 10px; 
+}
+
+.yoakmodal-content p {
+  font-size: 1em; 
+  margin: 20px 0; 
+  color: #000; 
+}
+
+.yoakclose-summary {
+  background: black; 
+  color: white; 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  font-size: 1rem; 
+  cursor: pointer;
+  margin-top: 10px; 
+}
+
+.yoakclose-summary:hover {
+  background: #3b3a3a; 
+}

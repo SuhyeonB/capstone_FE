@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import dummy_post from '../../dummy/dummy_post';
 import dummy_user from '../../dummy/dummy_user';
 import "../../styles/diary.css";
@@ -7,33 +8,63 @@ import "../../styles/diary.css";
 import arrowUp from '../../assets/icons/arrow_up.gif';
 import arrowDwn from '../../assets/icons/arrow_dwn.gif';
 import searchIcon from '../../assets/icons/search.png';
+import likeIcon from '../../assets/icons/ico-subscription-b.png';
 
 const Diaryboard = () => {
-  const [sortOrder, setSortOrder] = useState("latest");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [sortOrder, setSortOrder] = useState("latest"); // 정렬 기준 상태
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // 드롭다운 열림 상태
+  const [isSearchOpen, setIsSearchOpen] = useState(false); // 검색창 열림 상태
+  const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태
+  const [posts, setPosts] = useState([]); // 게시물 상태
+  const [filteredPosts, setFilteredPosts] = useState([]); // 검색 필터링된 게시물 상태
 
   const findUserNameById = (userId) => {
     const user = dummy_user.find(user => user.user_id === userId);
     return user ? user.name : 'Unknown User';
   };
 
-  // 게시물 정렬
-  const sortedPosts = [...dummy_post]
-    .filter((diary) => diary.public === 1) // 공개된 게시물만 표시
-    .sort((a, b) => {
-      if (sortOrder === "latest") {
-        return new Date(b.createdAt) - new Date(a.createdAt); // 최신순
-      } else {
-        return b.likes - a.likes; // 좋아요순
-      }
-    });
+  // 게시물을 정렬 기준에 따라 가져오기
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const url =
+          sortOrder === "latest"
+            ? "http://localhost:8080/api/public" // 최신순 데이터
+            : "http://localhost:8080/api/public/like-count"; // 좋아요순 데이터
 
-  // 정렬 순서 변경 핸들러
+        const response = await axios.get(url); // 서버 요청
+        setPosts(response.data); // 서버 데이터로 상태 업데이트
+      } catch (error) {
+        console.error("게시물 데이터를 가져오는 중 오류 발생. 더미 데이터를 사용합니다.", error);
+
+        // 서버 요청 실패 시 더미 데이터 사용
+        const sortedData = [...dummy_post];
+        if (sortOrder === "latest") {
+          sortedData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        } else {
+          sortedData.sort((a, b) => b.likeCount - a.likeCount);
+        }
+        setPosts(sortedData); // 더미 데이터로 상태 설정
+      }
+    };
+
+    fetchPosts(); // 데이터 요청
+  }, [sortOrder]); // 정렬 기준 변경 시 실행
+
+  // 검색어를 기반으로 게시물 필터링
+  useEffect(() => {
+    const filtered = posts.filter(
+      (diary) =>
+        diary.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        diary.content.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredPosts(filtered); // 필터링된 게시물 상태 설정
+  }, [searchQuery, posts]); // 검색어 또는 게시물이 변경될 때 실행
+
+  // 정렬 기준 변경 핸들러
   const handleSortChange = (order) => {
-    setSortOrder(order);
-    setIsDropdownOpen(false);
+    setSortOrder(order); // 정렬 기준 업데이트
+    setIsDropdownOpen(false); // 드롭다운 닫기
   };
 
   // 드롭다운 토글
@@ -51,15 +82,11 @@ const Diaryboard = () => {
     setSearchQuery(e.target.value);
   };
 
-  // 검색 필터 적용
-  const filteredPosts = sortedPosts.filter((diary) =>
-    diary.title.includes(searchQuery) || diary.content.includes(searchQuery)
-  );
-
   return (
     <div className="diary-board">
-      <h1 className='board-title'>여러분은 어떤 하루를 보냈나요?</h1>
+      <h1 className="board-title">여러분은 어떤 하루를 보냈나요?</h1>
 
+      {/* 검색 및 정렬 영역 */}
       <div className="search-sort-container">
         {/* 검색 아이콘 */}
         <img 
@@ -118,13 +145,14 @@ const Diaryboard = () => {
         {filteredPosts.map((diary) => (
           <DiaryEntry
             key={diary.post_id}
-            postId={diary.post_id} 
+            postId={diary.post_id}
             title={diary.title}
             content={diary.content}
             userId={diary.user_id}
             createdAt={diary.createdAt}
             weather={diary.weather}
             imageUrl={diary.imageUrl}
+            likeCount={diary.likeCount}
             findUserNameById={findUserNameById}
           />
         ))}
@@ -133,10 +161,10 @@ const Diaryboard = () => {
   );
 };
 
-const DiaryEntry = ({ postId, title, content, userId, createdAt, weather, imageUrl, findUserNameById }) => {
+const DiaryEntry = ({ postId, title, content, userId, createdAt, weather, imageUrl, likeCount, findUserNameById }) => {
   const navigate = useNavigate();
 
-  // 게시물 클릭 시 경로 설정
+  // 게시물 클릭 시 상세 페이지 이동
   const goToDetailPage = () => {
     const path = `/board/${postId}`;
     navigate(path, { state: { fromDiaryboard: true } });
@@ -144,7 +172,7 @@ const DiaryEntry = ({ postId, title, content, userId, createdAt, weather, imageU
 
   return (
     <div className="diary-entry" onClick={goToDetailPage}>
-      {/* 이미지 */}
+      {/* 게시물 이미지 */}
       {imageUrl && (
         <div className="diary-image">
           <img src={imageUrl} alt="Diary entry" />
@@ -161,9 +189,15 @@ const DiaryEntry = ({ postId, title, content, userId, createdAt, weather, imageU
 
       {/* 메타 정보 */}
       <div className="diary-meta">
-        <span className='user-name'>{findUserNameById(userId)}</span>
-        <span className='createdAt'>{createdAt}</span>
+        <span className="user-name">{findUserNameById(userId)}</span>
+        <span className="createdAt">{createdAt}</span>
         <span className={`weather-icon ${weather.replace(/\s/g, '-')}`}></span>
+      </div>
+
+      {/* 좋아요 컨테이너 */}
+      <div className="like-container">
+        <img src={likeIcon} alt="Like Icon" />
+        <span className="like-count">{likeCount}</span>
       </div>
     </div>
   );

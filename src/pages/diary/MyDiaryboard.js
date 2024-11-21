@@ -6,6 +6,8 @@ import dummy_post from '../../dummy/dummy_post';
 import dummy_user from '../../dummy/dummy_user';
 import "../../styles/diary.css"; 
 
+import likeIcon from '../../assets/icons/ico-subscription-b.png';
+
 const currentUserId = 101;
 
 const MyDiaryboard = () => {
@@ -81,6 +83,11 @@ const MyDiaryboard = () => {
               <span className='createdAt'>{diary.createdAt}</span>
               <span className={`weather-icon ${diary.weather}`}></span>
             </div>
+            {/* 좋아요 컨테이너 */}
+            <div className="like-container">
+              <img src={likeIcon} alt="Like Icon" />
+              <span className="like-count">{diary.likeCount}</span>
+          </div>
           </div>
         ))}
       </div>
