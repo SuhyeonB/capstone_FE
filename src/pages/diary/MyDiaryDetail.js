@@ -10,6 +10,7 @@ const MyDiaryDetail = () => {
   const [likes, setLikes] = useState({});
   const [summary, setSummary] = useState(''); // 요약 결과 상태
   const [loading, setLoading] = useState(false); // 로딩 상태
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 추가
 
   const diaryEntry = dummy_post.find(diary => diary.post_id === parseInt(postId));
 
@@ -42,16 +43,20 @@ const MyDiaryDetail = () => {
       });
 
       setSummary(response.data.summary); // 요약 결과 저장
+      setIsModalOpen(true); // 모달 열기
     } catch (error) {
       console.error('Failed to summarize diary:', error);
-      setSummary(`Today in Boracay was peaceful and quiet, with fewer tourists and perfect weather for a walk. Exploring the streets and enjoying the island's charm became a highlight of the trip.`);
+      setSummary(
+        `Today in Boracay was peaceful and quiet, with fewer tourists and perfect weather for a walk. Exploring the streets and enjoying the island's charm became a highlight of the trip.`
+      );
+      setIsModalOpen(true); // 에러 발생 시에도 모달 열기
     } finally {
       setLoading(false); // 로딩 종료
     }
   };
 
-  // 요약 닫기 함수 추가
-  const closeSummary = () => {
+  const closeModal = () => {
+    setIsModalOpen(false); // 모달 닫기
     setSummary(''); // 요약 상태 초기화
   };
 
@@ -76,18 +81,20 @@ const MyDiaryDetail = () => {
         <button className="yoak" onClick={handleSummarize} disabled={loading}>
           {loading ? '요약 중...' : '일기 요약하기'}
         </button>
+      </div>
 
-        {/* 요약 결과 표시 */}
-        {summary && (
-          <div className="summary-content">
-            <h3 className="summary-title">요약된 일기</h3>
+      {/* 요약 모달 */}
+      {isModalOpen && (
+        <div className="yoakmodal-overlay">
+          <div className="yoakmodal-content">
+            <h3 className="yoaksummary-title">요약된 일기</h3>
             <p>{summary}</p>
-            <button className="close-summary" onClick={closeSummary}>
+            <button className="yoakclose-summary" onClick={closeModal}>
               닫기
             </button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       <div className="flex-cont">
         <div className="cont-2 cont-box">

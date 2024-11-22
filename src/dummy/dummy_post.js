@@ -118,6 +118,7 @@ const dummy_post = [
     user_id: 101, // 홍길동
     weather: "partly cloudy",
     imageUrl:null,
+    likeCount: 0
   },
   {
     post_id: 12,
