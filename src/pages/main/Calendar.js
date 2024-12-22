@@ -123,11 +123,13 @@ const Calendar = () => {
       return;
     }
 
+    const formattedDate = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(currentDate).padStart(2, '0')}`;
+
     const newAttendance = {
-      attd_id: dummy_attend.length + 1, 
-      user_id: 101,
-      createdAt: today.toISOString().split('T')[0], 
-  };
+        attd_id: dummy_attend.length + 1,
+        user_id: 101,
+        createdAt: formattedDate, // 로컬 시간 기반 날짜
+    };
 
   dummy_attend.push(newAttendance); 
 

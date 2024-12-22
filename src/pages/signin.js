@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Sign.css';
 import { Link, useNavigate } from 'react-router-dom';
-//import axios from 'axios';
+import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/actions/userActions';
 
@@ -10,10 +10,13 @@ function Signin() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
-/*
+  const CLIENT_ID = "";
+  const KAKAO_CLIENT_ID = "";
+  const REDIRECT_URI = "";
+
   const handleLoginClick = async () => {
-    if (!email) { alert("아이디를 입력하세요."); return; }
-    if (!password) { alert("비밀번호를 입력하세요."); return; }
+    if (!email.trim()) { alert("아이디를 입력하세요."); return; }
+    if (!password.trim()) { alert("비밀번호를 입력하세요."); return; }
 
     try {
       const response = await axios.post('http://localhost:8080/api/users/signin', {
@@ -40,35 +43,19 @@ function Signin() {
         alert('존재하지 않는 회원입니다.');
       } else {
         alert('로그인 중 오류:', message);
+        alert('로그인 중 문제가 발생했습니다. 다시 시도해주세요.');
       }
     }
-  };
-*/
-  const handleLoginClick = async () => {
-    if (!email) { alert("아이디를 입력하세요."); return; }
-    if (!password) { alert("비밀번호를 입력하세요."); return; }
-
-    const userId = 101;
-    const username="홍길동";
-    const accessToken="temp43access343o&^token";
-    const refreshToken="temp43254refresyafj;si";
-
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
-
-      dispatch(setUser(userId, username, accessToken, refreshToken));
-      
-      navigate('../');
   };
 
   // 카카오 로그인 핸들러
   const handleKakaoLogin = () => {
-    window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=YOUR_KAKAO_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code';
+    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   };
 
   // 구글 로그인 핸들러
   const handleGoogleLogin = () => {
-    window.location.href = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=YOUR_GOOGLE_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=email profile';
+    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=${CLIENT_ID}&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fapi%2Foauth%2Fsignin%2Fgoogle&response_type=code&scope=email%20profile&service=lso&o2v=2&ddm=1&flowName=GeneralOAuthFlow`;
   };
 
   return (

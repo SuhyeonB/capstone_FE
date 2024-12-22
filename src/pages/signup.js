@@ -16,6 +16,7 @@ const Signup = () => {
     const [timerShow, setTimerShow] = useState(false);
     const [verifyCode, setVerfyCode] = useState('');
     const [verified, setVerified] = useState(false);
+    const [disableVerifyButton, setDisableVerifyButton] = useState(false);
 
     useEffect(() => {
         if (repwd.length > 0)
@@ -25,6 +26,7 @@ const Signup = () => {
 
     const sendEmail = async () => {
         setTimerShow(true);
+        setTime(300);
 
         try {
             const response = await axios.post('http://localhost:8080/api/emails/send-email', {
@@ -67,53 +69,70 @@ const Signup = () => {
         return `${minutes}:${remainingSeconds}`;
     };
 
-    const checkVerify = async() => {
-        alert('인증되었습니다.');
-        setVerified(true);
-        /*
+    const checkVerify = async () => {
         try {
             const response = await axios.post('http://localhost:8080/api/emails/verify-code', {
                 email: email,
                 code: verifyCode
             });
-
+    
             if (response.data === 'success') {
                 alert('인증되었습니다.');
                 setVerified(true);
-            } else {
-                alert("잘못된 코드입니다."); 
-            } 
+                setTimerShow(false);
+                setDisableVerifyButton(true);
+            }
         } catch (error) {
-            console.error(error);
-        } */
-    }
+            if (error.response && error.response.status === 400) {
+                alert(error.response.data); // Display the error message from the backend
+            } else {
+                console.error("Unexpected error:", error);
+                alert("알 수 없는 오류가 발생했습니다. 다시 시도해주세요.");
+            }
+        }
+    };
 
     const signup = async (e) => {
         e.preventDefault();
-        if (verified) {
-            alert("회원가입되었습니다.")
-            navigate('/signin');
-            /*
-            try {
-                await axios.post('http://localhost:8080/api/users', {
-                    name: name,
-                    email: email,
-                    password: pwd
-                });
-                // console.log('User signed up successfully: ', response.data);
-            } catch (error) {
-                console.error('Error during signup:', error.response?.data || error.message);
-            }*/
-        } else {
-            alert("회원가입에 실패했습니다.");
+    
+        if (!name.trim() || !email.trim() || !pwd.trim()) {
+            alert("모든 필드를 채워주세요.");
+            return;
         }
-    }
+    
+        if (!verified) {
+            alert("이메일 인증이 필요합니다.");
+            return;
+        }
+    
+        try {
+            const response = await axios.post('http://localhost:8080/api/users', {
+                name: name,
+                email: email,
+                password: pwd,
+            });
+    
+            // Success message
+            alert("회원가입이 완료되었습니다.");
+            console.log('User signed up successfully: ', response.data);
+    
+            navigate('/login');
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                alert(error.response.data);
+            } else {
+                alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
+                console.error('Unexpected error during signup:', error.message);
+            }
+        }
+    };
+    
 
     const validatePassword = (password) => {
         const lengthValid = password.length >= 8 && password.length <= 20;
         const hasLetter = /[a-zA-Z]/.test(password);
         const hasNumber = /[0-9]/.test(password);
-        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>~]/.test(password);
 
         return lengthValid && hasLetter && hasNumber && hasSpecialChar;
     };
@@ -139,7 +158,7 @@ const Signup = () => {
                         <input type='text' className='input-text verify-input' placeholder='인증 코드 입력' 
                         value={verifyCode} onChange={e => setVerfyCode(e.target.value)} required />
                         {timerShow && <div className='timer'>{formatTime(time)}</div>}
-                        <button type='button' className='btn-black' onClick={checkVerify}>인증하기</button>
+                        <button type='button' className='btn-black' onClick={checkVerify} disabled={disableVerifyButton}>인증하기</button>
                     </div>
 
             <span>

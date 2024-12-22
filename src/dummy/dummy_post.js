@@ -218,6 +218,21 @@ const dummy_post = [
     weather: "rainy",
     imageUrl:null,
     likeCount: 0
+  },
+  {
+    post_id: 21,
+    title: "travel",
+    content: `Today was a peaceful day in Boracay. I felt lucky to visit during a time when there were less tourists, especially no large crowds of Chinese visitors. The streets were quieter, allowing me to enjoy the island's charm at a leisurely pace. While my parents went off to enjoy a massage session, I decided to take a walk and explore the surroundings.
+
+Initially, I thought about taking one of the electric tricycles that are common here, but the weather was so perfect that walking seemed like a better choice. The bright sunshine and gentle breeze made it an ideal day to wander around on foot. I strolled through narrow streets, observing the local shops, vibrant houses, and friendly people going about there day. The slower pace allowed me to appreciate the small details of the island, like the rustling palm trees and the faint smell of the ocean in the air.
+
+This simple walk turned out to be one of the most enjoyable moments of the trip. It reminded me of how relaxing it is to slow down.`,
+    createdAt: "2024-11-21",
+    public: 0,
+    user_id: 101, // 대지니
+    weather: "sunny",
+    imageUrl:'/images/보라카이.jpg',
+    likeCount: 4
   }
 ];
 

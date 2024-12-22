@@ -803,12 +803,14 @@ h2 {
 
 
 .helper-button {
-    position: relative;
-    top: 200px;
-    width: 4em; 
-    height: 4em;
-    background-image: url('/src/assets/icons/trans_icon.png'); 
-    background-size: cover; 
+    position: fixed; /* 화면 기준으로 고정 */
+    bottom: 20vh; /* 화면 아래에서 20px */
+    right: 10vw; /* 화면 오른쪽에서 20px */
+    width: 5em; 
+    height: 5em;
+    background-color: white;
+    background-image: url('/src/assets/icons/assistant_icon.webp'); 
+    background-size: 80%; 
     background-repeat: no-repeat; 
     background-position: center; 
     border: none; 
@@ -819,8 +821,15 @@ h2 {
     transition: transform 0.2s ease-in-out;
 }
 
+
 .helper-button:hover {
     transform: scale(1.1);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.helper-button.loading {
+    background-image: url('/src/assets/icons/loading.gif'); /* 로딩 중 아이콘 */
+    animation: rotate 1.5s linear infinite; /* 로딩 애니메이션 (필요 시) */
 }
 
 /* 게시물 좋아요 나타내기 */

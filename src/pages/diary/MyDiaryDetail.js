@@ -27,9 +27,11 @@ const MyDiaryDetail = () => {
   }, []);
 
   const handleSummarize = async () => {
+    
     if (!diaryEntry || !diaryEntry.content) return;
 
     setLoading(true); // 로딩 시작
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     try {
       // JSON 데이터를 파일로 변환
       const diaryJson = JSON.stringify({ content: diaryEntry.content });
@@ -99,11 +101,15 @@ const MyDiaryDetail = () => {
       <div className="flex-cont">
         <div className="cont-2 cont-box">
           <div className="height-6 img-display">
-            {diaryEntry.image ? (
-              <img src={diaryEntry.image} alt="uploaded" />
-            ) : (
-              <p className="font-gray">이미지가 없습니다.</p>
-            )}
+          {diaryEntry.imageUrl ? (
+            <img 
+              src={process.env.PUBLIC_URL + diaryEntry.imageUrl} // 이미지 경로 설정
+              alt="Diary" 
+              className="detail-image" 
+            />
+          ) : (
+            <p className="font-gray">이미지가 없습니다.</p>
+          )}
           </div>
           <div className="diary-title diary-element">
             <h2>{diaryEntry.title}</h2>

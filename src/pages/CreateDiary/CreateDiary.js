@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/diary.css';
-//import api from '../../api/interceptor';
 import HelperButton from './HelperButton';
-import HelperPopup from './HelperPopup'; // HelperPopup 컴포넌트 가져오기
+import HelperPopup from './HelperPopup';
+import DiaryModal from './DiarlModal';
 import image_upload from '../../assets/icons/image-upload.png';
 import arrowUp from '../../assets/icons/arrow_up.gif';
 import arrowDwn from '../../assets/icons/arrow_dwn.gif';
-import dummy_post from '../../dummy/dummy_post';
+import axios from 'axios';
 
 const CreateDiary = () => {
-    const today = new Date();
     const MAX_CONTENT_LENGTH = 1000;
     const MAX_TITLE_LENGTH = 50;
 
@@ -67,122 +66,51 @@ const CreateDiary = () => {
         }
     };
 
-    // 예시 번역 함수
-    const translateContent = (text) => {
-        // 실제 번역 대신 예시 번역 반환
-        return `번역: ${text}`;
-    };
-
-    // 간단한 맞춤법 검사 함수
-    const checkSpelling = (text) => {
-        // 간단한 예시 맞춤법 검사 (실제 API 또는 로직으로 대체 가능)
-        if (text.includes("beautiful")) {
-            return "‘beautiful’은 잘못된 단어 스펠링입니다.";
+    const handleRegister = async () => {
+        if (!title || !content || !weather) {
+            alert("제목과 내용을 모두 입력해주세요!");
+            return;
         }
-        return "맞춤법 오류가 없습니다.";
-    };
 
-    /* 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("content", content);
+        formData.append("isPublic", ispublic === "비공개" ? false : true); // Boolean 값 전달
+        formData.append("weather", weather);
+        if (imageFile) {
+            formData.append("image", imageFile); // 이미지 파일 추가
+        }
+
         try {
-            const response = await api.post('/api/diary', {
-                title,
-                content,
-                weather,
-                visibility: ispublic === 'pub' ? '전체공개' : '비공개'
+            // 서버로 POST 요청 전송
+            const response = await axios.post('http://localhost:8080/api/posts', formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data", // FormData 전송
+                    "Authorization": `Bearer ${localStorage.getItem("accessToken")}` // JWT 토큰 추가
+                },
             });
-            alert("일기가 성공적으로 등록되었습니다.");
+
+            // 성공적으로 처리된 경우
+            alert("일기가 성공적으로 등록되었습니다!");
             console.log("서버 응답:", response.data);
+
+            // 상태 초기화
+            setTitle('');
+            setContent('');
+            setImagePreview(null);
+            setImageFile(null);
+            setResultModal(false);
+
         } catch (error) {
             console.error("Failed to create diary:", error);
             alert("일기 등록 중 오류가 발생했습니다.");
         }
     };
-    */
-
-    // 제출 버튼 클릭 시 실행되는 함수
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        // 유저가 작성한 내용을 바탕으로 번역 및 맞춤법 검사 수행
-        const translated = `
-        오늘은 보라카이에서 평화로운 하루를 보냈다. 관광객이 적은 시기에 방문해서 특히 조용했고, 섬의 매력을 여유롭게 즐길 수 있었다. 부모님이 마사지를 받으러 가신 동안 나는 산책하며 주변을 탐험하기로 했다.
-
-        `;
-        const feedback = `
-1. there day
-there는 장소를 나타낼 때 사용하는 단어인데, 여기서는 그들의라는 소유격을 나타내야 해서 their를 써야 합니다.
-
-수정 방법: friendly people going about their day로 고치는 것이 맞습니다.
-`;
-
-
-        // 번역 및 피드백 내용을 상태에 저장하여 모달에 표시
-        setTranslatedContent(translated);
-        setAssistantFeedback(feedback);
-        setResultModal(true); // 결과 모달 열기
-    };
-
-    // "일기 등록하기" 버튼 클릭 시 실행되는 함수
-    const handleRegister = () => {
-        if (!title || !content) {
-            alert("제목과 내용을 모두 입력해주세요!");
-            return;
-        }
-
-        const newDiary = {
-            post_id: dummy_post.length + 1,
-            title: title,
-            content: content,
-            createdAt: today.toISOString().split('T')[0],
-            public: ispublic === "비공개" ? 0 : 1,
-            user_id: 101,
-            weather: weather,
-            imageUrl: imageFile ? URL.createObjectURL(imageFile) : null, // 업로드된 이미지를 URL로 변환
-            likeCount: 0, // Default
-        };
-        dummy_post.push(newDiary);
-        alert("일기가 성공적으로 등록되었습니다!");
-
-        // Reset form fields
-        setTitle('');
-        setContent('');
-        setImagePreview(null);
-        setImageFile(null);
-        setResultModal(false);
-    };
-
-    // AI 일기 생성 선택 시 실행되는 함수
-    const handleDiaryCreate = () => {
-        setInitialModal(false);
-        window.open('http://localhost:8501', '_blank'); // AI 생성 페이지를 새 탭에서 열기
-    };
-
-    // 직접 일기 작성 선택 시 실행되는 함수
-    const handleDiaryWrite = () => {
-        setInitialModal(false);
-    };
 
     return (
         <div className="container">
             {/* 일기 생성 또는 작성 선택 모달 */}
-            {initialModal && (
-                <div className="diarymodal-background">
-                    <div className="diarymodal">
-                        <div className="diarymodal-option" onClick={handleDiaryCreate}>
-                            <div className="ai-icon"></div>
-                            <p>일기 작성이 어려우신가요? <br />AI가 도와드릴게요!<br />쉽고 간편하게 일기를 생성해 보세요.</p>
-                            <button>일기생성 하기</button>
-                        </div>
-                        <div className="diarymodal-option" onClick={handleDiaryWrite}>
-                            <div className="create-icon"></div>
-                            <p>오늘 하루를 직접 기록해 보세요.<br />편하게 일기를 작성할 수 있어요!</p>
-                            <button>일기작성 하기</button>
-                        </div>
-                    </div>
-                </div>
-            )}
+            {initialModal && <DiaryModal setInitialModal={setInitialModal} />}
 
             <h1 className="board-title">새로운 일기 작성</h1>
             <p className='align-right'>{typo}/1000자</p>
@@ -270,7 +198,12 @@ there는 장소를 나타낼 때 사용하는 단어인데, 여기서는 그들�
                     <button className="submit-btn cont-box" onClick={handleRegister}>일기 등록하기</button>
                 </div>
                 {/* 모달 열기 버튼 */}
-                <HelperButton onClick={handleSubmit} />
+                <HelperButton
+                    content={content} // content 전달
+                    setTranslatedContent={setTranslatedContent}
+                    setAssistantFeedback={setAssistantFeedback}
+                    setShowPopup={setResultModal}
+                />
             </div>
             {/* 결과 모달 */}
             {resultModal && (

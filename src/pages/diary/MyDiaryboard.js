@@ -3,10 +3,10 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
 import dummy_post from '../../dummy/dummy_post';
-import dummy_user from '../../dummy/dummy_user';
 import "../../styles/diary.css"; 
 
 import likeIcon from '../../assets/icons/ico-subscription-b.png';
+import { useSelector } from 'react-redux';
 
 const currentUserId = 101;
 
@@ -16,8 +16,7 @@ const MyDiaryboard = () => {
   const [dateFilterOpen, setDateFilterOpen] = useState(false);
   const navigate = useNavigate();
 
-  const currentUser = dummy_user.find(user => user.user_id === currentUserId);
-  const currentUserName = currentUser ? currentUser.name : '알 수 없는 사용자';
+    const username = useSelector((state) => state.user.username);
 
   const currentUserDiaries = dummy_post
     .filter(diary => diary.user_id === currentUserId) // 현재 사용자의 일기만 필터링
@@ -47,7 +46,7 @@ const MyDiaryboard = () => {
   return (
     <div className="diary-board">
       <h1 className='board-title'>
-        {currentUserName}님의 일기{" "}
+        {username}님의 일기{" "}
         <span className="diary-count">{currentUserDiaries.length}</span>
       </h1>
 
